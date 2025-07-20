@@ -1,132 +1,71 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Links Rápidos</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      margin: 40px;
-      background: #fff;
-      max-width: 600px;
-    }
+<script>
+  let links = JSON.parse(localStorage.getItem("links")) || [
+    { name: "Google", url: "https://google.com" },
+    { name: "YouTube", url: "https://youtube.com" },
+    { name: "ChatGPT", url: "https://chat.openai.com" }
+  ];
 
-    .link-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 8px 0;
-      padding: 6px 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      background: #f9f9f9;
-      cursor: grab;
-    }
+  const list = document.getElementById("linkList");
 
-    .link-item a {
-      text-decoration: none;
-      color: #0366d6;
-      font-size: 16px;
-      flex-grow: 1;
-    }
+  function renderLinks() {
+    list.innerHTML = "";
+    links.forEach((link, index) => {
+      const item = document.createElement("div");
+      item.className = "link-item";
+      item.draggable = true;
+      item.dataset.index = index;
 
-    .buttons {
-      display: flex;
-      gap: 6px;
-    }
+      item.innerHTML = `
+        <a href="${link.url}" target="_blank">${link.name}</a>
+        <div class="buttons">
+          <button onclick="editLink(${index})">Editar</button>
+        </div>
+      `;
 
-    button {
-      padding: 3px 6px;
-      font-size: 12px;
-      cursor: pointer;
-    }
-
-    #addForm {
-      margin-top: 20px;
-    }
-
-    input[type="text"] {
-      padding: 6px;
-      font-size: 14px;
-      width: 100%;
-      margin-bottom: 10px;
-    }
-  </style>
-</head>
-<body>
-  <h2>Links Rápidos</h2>
-
-  <div id="linkList"></div>
-
-  <form id="addForm">
-    <input type="text" id="newName" placeholder="Nome do link (ex: Google)" required>
-    <input type="text" id="newURL" placeholder="URL do link (ex: https://google.com)" required>
-    <button type="submit">Adicionar link</button>
-  </form>
-
-  <script>
-    let links = [
-      { name: "Google", url: "https://google.com" },
-      { name: "YouTube", url: "https://youtube.com" },
-      { name: "ChatGPT", url: "https://chat.openai.com" }
-    ];
-
-    const list = document.getElementById("linkList");
-
-    function renderLinks() {
-      list.innerHTML = "";
-      links.forEach((link, index) => {
-        const item = document.createElement("div");
-        item.className = "link-item";
-        item.draggable = true;
-        item.dataset.index = index;
-
-        item.innerHTML = `
-          <a href="${link.url}" target="_blank">${link.name}</a>
-          <div class="buttons">
-            <button onclick="editLink(${index})">Editar</button>
-          </div>
-        `;
-
-        item.addEventListener("dragstart", e => {
-          e.dataTransfer.setData("text/plain", index);
-        });
-
-        item.addEventListener("dragover", e => e.preventDefault());
-
-        item.addEventListener("drop", e => {
-          e.preventDefault();
-          const from = e.dataTransfer.getData("text/plain");
-          const to = index;
-          [links[from], links[to]] = [links[to], links[from]];
-          renderLinks();
-        });
-
-        list.appendChild(item);
+      item.addEventListener("dragstart", e => {
+        e.dataTransfer.setData("text/plain", index);
       });
-    }
 
-    document.getElementById("addForm").addEventListener("submit", e => {
-      e.preventDefault();
-      const name = document.getElementById("newName").value.trim();
-      const url = document.getElementById("newURL").value.trim();
-      if (name && url) {
-        links.push({ name, url });
+      item.addEventListener("dragover", e => e.preventDefault());
+
+      item.addEventListener("drop", e => {
+        e.preventDefault();
+        const from = e.dataTransfer.getData("text/plain");
+        const to = index;
+        [links[from], links[to]] = [links[to], links[from]];
+        saveLinks();
         renderLinks();
-        e.target.reset();
-      }
+      });
+
+      list.appendChild(item);
     });
+  }
 
-    function editLink(index) {
-      const newName = prompt("Novo nome:", links[index].name);
-      const newURL = prompt("Nova URL:", links[index].url);
-      if (newName && newURL) {
-        links[index] = { name: newName, url: newURL };
-        renderLinks();
-      }
+  document.getElementById("addForm").addEventListener("submit", e => {
+    e.preventDefault();
+    const name = document.getElementById("newName").value.trim();
+    const url = document.getElementById("newURL").value.trim();
+    if (name && url) {
+      links.push({ name, url });
+      saveLinks();
+      renderLinks();
+      e.target.reset();
     }
+  });
 
-    renderLinks();
-  </script>
-</body>
-</html>
+  function editLink(index) {
+    const newName = prompt("Novo nome:", links[index].name);
+    const newURL = prompt("Nova URL:", links[index].url);
+    if (newName && newURL) {
+      links[index] = { name: newName, url: newURL };
+      saveLinks();
+      renderLinks();
+    }
+  }
+
+  function saveLinks() {
+    localStorage.setItem("links", JSON.stringify(links));
+  }
+
+  renderLinks();
+</script>
