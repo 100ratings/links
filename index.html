@@ -7,6 +7,10 @@
 
   const list = document.getElementById("linkList");
 
+  function saveLinks() {
+    localStorage.setItem("links", JSON.stringify(links));
+  }
+
   function renderLinks() {
     list.innerHTML = "";
     links.forEach((link, index) => {
@@ -61,10 +65,6 @@
       saveLinks();
       renderLinks();
     }
-  }
-
-  function saveLinks() {
-    localStorage.setItem("links", JSON.stringify(links));
   }
 
   renderLinks();
