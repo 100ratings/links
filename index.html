@@ -7,7 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
   <style>
     html, body {
-      overflow: hidden;  /* Remove rolagem enquanto tela está branca */
+      /* Por padrão, esconde a rolagem */
+      overflow: hidden;
       height: 100%;
     }
     body {
@@ -20,7 +21,7 @@
       padding-bottom: 60px;
     }
     #content {
-      display: none; /* inicialmente oculto */
+      display: none;
       padding: 30px 10px;
     }
     #content .inner {
@@ -53,7 +54,7 @@
       transform: translateX(2px);
     }
     #footer {
-      display: none; /* permanece oculto */
+      display: none;
     }
   </style>
 </head>
@@ -83,11 +84,9 @@
       taps++;
       if (taps === 3) {
         document.body.removeEventListener('click', onTap);
-
-        // Restaura a rolagem normal quando mostra o conteúdo
-        document.documentElement.style.overflow = '';
-        document.body.style.overflow = '';
-
+        // Quando libera o conteúdo, volta o scroll ao padrão do navegador
+        document.documentElement.style.overflow = 'auto';
+        document.body.style.overflow = 'auto';
         document.getElementById('content').style.display = 'block';
         setupRedirects();
       }
