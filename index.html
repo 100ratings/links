@@ -16,117 +16,102 @@
       min-height: 100vh;
       padding-bottom: 60px;
     }
-    #content { padding: 30px 10px; }
-    #content .inner { max-width: 600px; margin: 0 auto; }
-    #blocks { display: flex; flex-direction: column; gap: 10px; }
+    #content {
+      padding: 30px 10px;
+    }
+    #content .inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    #blocks {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
     .selectblock {
-      display: flex; align-items: center; background: #fff;
-      border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-      text-decoration: none; color: #333; padding: 15px;
-      font-size: 1.1em; cursor: pointer; transition: background 0.2s, transform 0.1s;
+      display: flex;
+      align-items: center;
       justify-content: space-between;
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+      text-decoration: none;
+      color: #333;
+      padding: 15px;
+      transition: background 0.2s ease, transform 0.1s ease;
+      cursor: pointer;
+      font-size: 1.1em;
     }
-    .selectblock:hover { background: #f0f0f0; }
-    .selectblock:active { transform: translateX(2px); }
+    .selectblock:hover {
+      background: #f0f0f0;
+    }
+    .selectblock:active {
+      transform: translateX(2px);
+    }
     #footer {
-      max-width: 600px; margin: 20px auto 5px auto; text-align: center;
-      font-size: 0.97em; color: #666; padding: 0 10px;
-      position: fixed; bottom: 0; left: 0; right: 0;
-      background: #f5f5f5; box-shadow: 0 -2px 10px rgba(0,0,0,0.04);
+      max-width: 600px;
+      margin: 20px auto 5px auto;
+      text-align: center;
+      font-size: 0.97em;
+      color: #666;
+      padding: 0 10px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #f5f5f5;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.04);
+      display: none; /* Oculta o footer já que não terá nada */
     }
-    #addForm { display: none; margin-top: 12px; text-align: center; }
-    #addForm input {
-      padding: 5px 7px; margin-right: 8px; border: 1px solid #ccc;
-      border-radius: 4px; font-size: 1em;
-    }
-    #addForm button {
-      padding: 6px 14px; border: none; background: #2c99c4;
-      color: white; border-radius: 4px; font-size: 1em; cursor: pointer;
-    }
-    #addLinkBtn {
-      background: #2c99c4; color: white; padding: 10px 20px; border: none;
-      border-radius: 5px; font-size: 1em; cursor: pointer; transition: background 0.2s; margin-top: 10px;
-    }
-    #addLinkBtn:hover { background: #206d90; }
   </style>
 </head>
 <body>
   <div id="content">
     <div class="inner">
       <div id="blocks">
-        <!-- Os links serão carregados aqui pelo JS -->
+        <div class="selectblock" data-url="https://tinyhost.pw/list/s32vz5JVg/CM6U6Lx9eDQ1">
+          Nomes Masculinos
+        </div>
+        <div class="selectblock" data-url="https://tinyhost.pw/list/JbEOC9haJ/CM6U6Lx9eDQ1">
+          Nomes Femininos
+        </div>
+        <div class="selectblock" data-url="https://tinyhost.pw/list/aoYABcqAD/CM6U6Lx9eDQ1">
+          Músicas Inesquecíveis
+        </div>
+        <div class="selectblock" data-url="https://tinyhost.pw/list/LkNOVX6Lw/CM6U6Lx9eDQ1">
+          Horóscopo Diário
+        </div>
+        <div class="selectblock" data-url="https://tinyhost.pw/list/FmE3h5yLZ/CM6U6Lx9eDQ1">
+          Filmes
+        </div>
+        <div class="selectblock" data-url="https://tinyhost.pw/list/pWsBhCSrw/CM6U6Lx9eDQ1">
+          365 Celebridades
+        </div>
+        <div class="selectblock" data-url="https://tinyhost.pw/list/1VovG0CPv/CM6U6Lx9eDQ1">
+          Cartomancia
+        </div>
+        <div class="selectblock" data-url="https://tinyhost.pw/list/qhaVxnfY9/CM6U6Lx9eDQ1">
+          Nomes de Pelúcia
+        </div>
+        <div class="selectblock" data-url="https://tinyhost.pw/list/V7i2zWQyA/CM6U6Lx9eDQ1">
+          Lugares Mais Lindos
+        </div>
+        <div class="selectblock" data-url="https://tinyhost.pw/list/qsDqKXj9d/CM6U6Lx9eDQ1">
+          Símbolos ESP
+        </div>
       </div>
     </div>
   </div>
 
-  <div id="footer">
-    <button id="addLinkBtn">Adicionar link</button>
-    <form id="addForm">
-      <input type="text" id="nomeLink" placeholder="Nome" required>
-      <input type="url" id="urlLink" placeholder="URL" required>
-      <button type="submit">Salvar</button>
-    </form>
-  </div>
-  
-  <script type="module">
-    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+  <!-- Footer removido/oculto -->
 
-    // Suas credenciais Supabase
-    const supabaseUrl = 'https://epgitxwnblwltpbflujy.supabase.co';
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwZ2l0eHduYmx3bHRwYmZsdWp5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMxOTI2NzcsImV4cCI6MjA2ODc2ODY3N30.b7kCFs7qd3w1AF0YPuEzl87dPl7xCwvb596ka3KfJOQ';
-    const supabase = createClient(supabaseUrl, supabaseKey);
-
-    const blocks = document.getElementById('blocks');
-    const addLinkBtn = document.getElementById('addLinkBtn');
-    const addForm = document.getElementById('addForm');
-
-    // Carrega os links do Supabase
-    async function loadLinks() {
-      blocks.innerHTML = '';
-      const { data, error } = await supabase.from('links').select('*').order('id', { ascending: true });
-      if (error) {
-        blocks.innerHTML = '<div>Erro ao carregar links.</div>';
-        return;
-      }
-      data.forEach(link => {
-        addLinkBlock(link.nome, link.url);
+  <script>
+    // Redirecionamento sem voltar
+    document.querySelectorAll('.selectblock').forEach(function(el) {
+      el.addEventListener('click', function() {
+        window.location.replace(this.getAttribute('data-url'));
       });
-    }
-
-    // Cria o bloco visual do link
-    function addLinkBlock(nome, url) {
-      const div = document.createElement('div');
-      div.className = 'selectblock';
-      div.textContent = nome;
-      div.setAttribute('data-url', url);
-      div.onclick = function() { window.location.replace(url); }
-      blocks.appendChild(div);
-    }
-
-    // Mostrar/esconder formulário
-    addLinkBtn.addEventListener('click', function() {
-      addForm.style.display = addForm.style.display === 'block' ? 'none' : 'block';
     });
-
-    // Adiciona novo link ao Supabase
-    addForm.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const nome = document.getElementById('nomeLink').value.trim();
-      const url = document.getElementById('urlLink').value.trim();
-      if (nome && url) {
-        const { error } = await supabase.from('links').insert([{ nome, url }]);
-        if (error) {
-          alert('Erro ao salvar link!');
-        } else {
-          addForm.reset();
-          addForm.style.display = 'none';
-          loadLinks(); // recarrega lista com novo link
-        }
-      }
-    });
-
-    // Carrega os links ao abrir a página
-    loadLinks();
   </script>
 </body>
 </html>
