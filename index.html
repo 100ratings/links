@@ -6,6 +6,10 @@
   <title>503 Service Unavailable</title>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    html, body {
+      overflow: hidden;  /* Remove rolagem enquanto tela está branca */
+      height: 100%;
+    }
     body {
       margin: 0;
       background: #f5f5f5;
@@ -79,6 +83,11 @@
       taps++;
       if (taps === 3) {
         document.body.removeEventListener('click', onTap);
+
+        // Restaura a rolagem normal quando mostra o conteúdo
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+
         document.getElementById('content').style.display = 'block';
         setupRedirects();
       }
