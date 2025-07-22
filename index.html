@@ -7,7 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
   <style>
     html {
-      overflow: hidden;
+      overflow-x: hidden; /* Nunca mostra horizontal */
+      overflow-y: hidden; /* Só mostra vertical depois */
       height: 100%;
     }
     body {
@@ -27,7 +28,7 @@
       text-align: left;
       max-width: 90%;
       width: fit-content;
-      margin: 60px auto 0 auto; /* Topo como na imagem */
+      margin: 60px auto 0 auto;
     }
     #fake-error h1 {
       margin: 0 0 10px 0;
@@ -113,7 +114,8 @@ ID: 'grnl::rqfzp-1753201928223-bfc9aba80b1e'
       taps++;
       if (taps === 3) {
         document.body.removeEventListener('click', onTap);
-        document.documentElement.style.overflow = 'auto';
+        document.documentElement.style.overflowY = 'auto';
+        document.documentElement.style.overflowX = 'hidden';
         document.getElementById('fake-error').style.display = 'none';
         document.getElementById('content').style.display = 'block';
         setupRedirects();
