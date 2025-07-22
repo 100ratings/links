@@ -2,68 +2,61 @@
 <html lang="pt-br">
 <head>
   <meta charset="utf-8">
-  <title>Meus Links</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1">
+  <title>Links Rápidos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      background: #22262a; /* fundo antracito */
+      margin: 0;
+      background: #22262a;
       font-family: 'Source Sans Pro', Arial, sans-serif;
       color: #f3f3f5;
-      margin: 0; padding: 0;
+      min-height: 100vh;
+      padding-bottom: 30px;
     }
-    .container {
-      max-width: 420px;
+    #blocks {
+      max-width: 600px;
       margin: 36px auto;
-      padding: 0 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 0 10px;
     }
-    h1 {
-      text-align: center;
-      font-size: 1.5em;
-      color: #7fc4f2;
-      font-weight: 700;
-      margin: 26px 0 25px 0;
-      letter-spacing: 0.06em;
-      user-select: none;
-    }
-    .link-btn {
+    .block-link {
       display: block;
-      width: 100%;
+      background: #fff;
       background: #23282e;
       color: #f3f3f5;
-      border: none;
-      border-radius: 8px;
-      font-size: 1.16em;
+      border-radius: 6px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.11);
+      padding: 18px 18px;
+      font-size: 1.18em;
       font-weight: 600;
-      padding: 20px 0;
-      margin-bottom: 11px;
-      cursor: pointer;
-      box-shadow: 0 1px 5px rgba(0,0,0,0.13);
-      transition: background 0.18s, color 0.12s, box-shadow 0.13s;
-      text-align: left;
-      padding-left: 25px;
-      letter-spacing: 0.03em;
+      text-decoration: none;
+      margin: 0;
+      transition: background 0.19s, color 0.13s, box-shadow 0.13s;
+      letter-spacing: 0.01em;
     }
-    .link-btn:hover, .link-btn:focus {
+    .block-link:hover, .block-link:focus {
       background: #38404b;
       color: #7fc4f2;
-      box-shadow: 0 1px 12px rgba(127,196,242,0.18);
+      box-shadow: 0 1px 12px rgba(127,196,242,0.16);
       outline: none;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Links Rápidos</h1>
-    <button class="link-btn" onclick="go('https://tinyhost.pw/list/s32vz5JVg/CM6U6Lx9eDQ1')">Nomes Masculinos</button>
-    <button class="link-btn" onclick="go('https://tinyhost.pw/list/JbEOC9haJ/CM6U6Lx9eDQ1')">Nomes Femininos</button>
-    <button class="link-btn" onclick="go('https://tinyhost.pw/list/aoYABcqAD/CM6U6Lx9eDQ1')">Músicas Inesquecíveis</button>
-    <button class="link-btn" onclick="go('https://tinyhost.pw/list/LkNOVX6Lw/CM6U6Lx9eDQ1')">Horóscopo Diário</button>
-    <button class="link-btn" onclick="go('https://tinyhost.pw/list/FmE3h5yLZ/CM6U6Lx9eDQ1')">Filmes</button>
-    <button class="link-btn" onclick="go('https://tinyhost.pw/list/pWsBhCSrw/CM6U6Lx9eDQ1')">365 Celebridades</button>
-    <button class="link-btn" onclick="go('https://tinyhost.pw/list/1VovG0CPv/CM6U6Lx9eDQ1')">Cartomancia</button>
-    <button class="link-btn" onclick="go('https://tinyhost.pw/list/qhaVxnfY9/CM6U6Lx9eDQ1')">Nomes de Pelúcia</button>
-    <button class="link-btn" onclick="go('https://tinyhost.pw/list/V7i2zWQyA/CM6U6Lx9eDQ1')">Lugares Mais Lindos</button>
-    <button class="link-btn" onclick="go('https://tinyhost.pw/list/qsDqKXj9d/CM6U6Lx9eDQ1')">Símbolos ESP</button>
+  <div id="blocks">
+    <a class="block-link" href="#" onclick="go('https://tinyhost.pw/list/s32vz5JVg/CM6U6Lx9eDQ1');return false;">Nomes Masculinos</a>
+    <a class="block-link" href="#" onclick="go('https://tinyhost.pw/list/JbEOC9haJ/CM6U6Lx9eDQ1');return false;">Nomes Femininos</a>
+    <a class="block-link" href="#" onclick="go('https://tinyhost.pw/list/aoYABcqAD/CM6U6Lx9eDQ1');return false;">Músicas Inesquecíveis</a>
+    <a class="block-link" href="#" onclick="go('https://tinyhost.pw/list/LkNOVX6Lw/CM6U6Lx9eDQ1');return false;">Horóscopo Diário</a>
+    <a class="block-link" href="#" onclick="go('https://tinyhost.pw/list/FmE3h5yLZ/CM6U6Lx9eDQ1');return false;">Filmes</a>
+    <a class="block-link" href="#" onclick="go('https://tinyhost.pw/list/pWsBhCSrw/CM6U6Lx9eDQ1');return false;">365 Celebridades</a>
+    <a class="block-link" href="#" onclick="go('https://tinyhost.pw/list/1VovG0CPv/CM6U6Lx9eDQ1');return false;">Cartomancia</a>
+    <a class="block-link" href="#" onclick="go('https://tinyhost.pw/list/qhaVxnfY9/CM6U6Lx9eDQ1');return false;">Nomes de Pelúcia</a>
+    <a class="block-link" href="#" onclick="go('https://tinyhost.pw/list/V7i2zWQyA/CM6U6Lx9eDQ1');return false;">Lugares Mais Lindos</a>
+    <a class="block-link" href="#" onclick="go('https://tinyhost.pw/list/qsDqKXj9d/CM6U6Lx9eDQ1');return false;">Símbolos ESP</a>
   </div>
   <script>
     function go(url) {
