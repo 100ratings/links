@@ -6,9 +6,8 @@
   <title>503 Service Unavailable</title>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    html, body {
-      /* Por padrão, esconde a rolagem */
-      overflow: hidden;
+    html {
+      overflow: hidden; /* Esconde rolagem enquanto a tela está branca */
       height: 100%;
     }
     body {
@@ -19,9 +18,10 @@
       position: relative;
       min-height: 100vh;
       padding-bottom: 60px;
+      /* NÃO coloque overflow aqui! */
     }
     #content {
-      display: none;
+      display: none; /* inicialmente oculto */
       padding: 30px 10px;
     }
     #content .inner {
@@ -54,7 +54,7 @@
       transform: translateX(2px);
     }
     #footer {
-      display: none;
+      display: none; /* permanece oculto */
     }
   </style>
 </head>
@@ -84,9 +84,10 @@
       taps++;
       if (taps === 3) {
         document.body.removeEventListener('click', onTap);
-        // Quando libera o conteúdo, volta o scroll ao padrão do navegador
+
+        // Apenas libera rolagem no <html>
         document.documentElement.style.overflow = 'auto';
-        document.body.style.overflow = 'auto';
+
         document.getElementById('content').style.display = 'block';
         setupRedirects();
       }
