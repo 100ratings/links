@@ -7,22 +7,45 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
   <style>
     html {
-      overflow: hidden; /* Esconde rolagem enquanto a tela está branca */
+      overflow: hidden;
       height: 100%;
     }
     body {
       margin: 0;
-      background: #f5f5f5;
+      background: #fff;
       font-family: 'Source Sans Pro', sans-serif;
       color: #333;
-      position: relative;
-      min-height: 100vh;
-      padding-bottom: 60px;
-      /* NÃO coloque overflow aqui! */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+    #fake-error {
+      font-family: monospace;
+      padding: 20px;
+      background: #fafafa;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.1);
+      text-align: left;
+      max-width: 600px;
+      display: block;
+    }
+    #fake-error h1 {
+      margin: 0 0 10px 0;
+      font-size: 1.2em;
+    }
+    #fake-error pre {
+      background: #f0f0f0;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
     }
     #content {
-      display: none; /* inicialmente oculto */
+      display: none;
       padding: 30px 10px;
+      width: 100%;
     }
     #content .inner {
       max-width: 600px;
@@ -54,11 +77,20 @@
       transform: translateX(2px);
     }
     #footer {
-      display: none; /* permanece oculto */
+      display: none;
     }
   </style>
 </head>
 <body>
+  <div id="fake-error">
+    <h1>503: SERVICE_UNAVAILABLE</h1>
+    <pre>
+Code: 'FUNCTIONS_TEMPORARILY_DISABLED'
+
+ID: 'grnl::rqfzp-1753201928223-bfc9aba80b1e'
+    </pre>
+  </div>
+
   <div id="content">
     <div class="inner">
       <div id="blocks">
@@ -84,10 +116,8 @@
       taps++;
       if (taps === 3) {
         document.body.removeEventListener('click', onTap);
-
-        // Apenas libera rolagem no <html>
         document.documentElement.style.overflow = 'auto';
-
+        document.getElementById('fake-error').style.display = 'none';
         document.getElementById('content').style.display = 'block';
         setupRedirects();
       }
