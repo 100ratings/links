@@ -17,6 +17,7 @@
       padding-bottom: 60px;
     }
     #content {
+      display: none; /* inicialmente oculto */
       padding: 30px 10px;
     }
     #content .inner {
@@ -49,19 +50,7 @@
       transform: translateX(2px);
     }
     #footer {
-      max-width: 600px;
-      margin: 20px auto 5px auto;
-      text-align: center;
-      font-size: 0.97em;
-      color: #666;
-      padding: 0 10px;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: #f5f5f5;
-      box-shadow: 0 -2px 10px rgba(0,0,0,0.04);
-      display: none; /* Oculta o footer já que não terá nada */
+      display: none; /* permanece oculto */
     }
   </style>
 </head>
@@ -69,49 +58,40 @@
   <div id="content">
     <div class="inner">
       <div id="blocks">
-        <div class="selectblock" data-url="https://tinyhost.pw/list/s32vz5JVg/CM6U6Lx9eDQ1">
-          Nomes Masculinos
-        </div>
-        <div class="selectblock" data-url="https://tinyhost.pw/list/JbEOC9haJ/CM6U6Lx9eDQ1">
-          Nomes Femininos
-        </div>
-        <div class="selectblock" data-url="https://tinyhost.pw/list/aoYABcqAD/CM6U6Lx9eDQ1">
-          Músicas Inesquecíveis
-        </div>
-        <div class="selectblock" data-url="https://tinyhost.pw/list/LkNOVX6Lw/CM6U6Lx9eDQ1">
-          Horóscopo Diário
-        </div>
-        <div class="selectblock" data-url="https://tinyhost.pw/list/FmE3h5yLZ/CM6U6Lx9eDQ1">
-          Filmes
-        </div>
-        <div class="selectblock" data-url="https://tinyhost.pw/list/pWsBhCSrw/CM6U6Lx9eDQ1">
-          365 Celebridades
-        </div>
-        <div class="selectblock" data-url="https://tinyhost.pw/list/1VovG0CPv/CM6U6Lx9eDQ1">
-          Cartomancia
-        </div>
-        <div class="selectblock" data-url="https://tinyhost.pw/list/qhaVxnfY9/CM6U6Lx9eDQ1">
-          Nomes de Pelúcia
-        </div>
-        <div class="selectblock" data-url="https://tinyhost.pw/list/V7i2zWQyA/CM6U6Lx9eDQ1">
-          Lugares Mais Lindos
-        </div>
-        <div class="selectblock" data-url="https://tinyhost.pw/list/qsDqKXj9d/CM6U6Lx9eDQ1">
-          Símbolos ESP
-        </div>
+        <div class="selectblock" data-url="https://tinyhost.pw/list/s32vz5JVg/CM6U6Lx9eDQ1">Nomes Masculinos</div>
+        <div class="selectblock" data-url="https://tinyhost.pw/list/JbEOC9haJ/CM6U6Lx9eDQ1">Nomes Femininos</div>
+        <div class="selectblock" data-url="https://tinyhost.pw/list/aoYABcqAD/CM6U6Lx9eDQ1">Músicas Inesquecíveis</div>
+        <div class="selectblock" data-url="https://tinyhost.pw/list/LkNOVX6Lw/CM6U6Lx9eDQ1">Horóscopo Diário</div>
+        <div class="selectblock" data-url="https://tinyhost.pw/list/FmE3h5yLZ/CM6U6Lx9eDQ1">Filmes</div>
+        <div class="selectblock" data-url="https://tinyhost.pw/list/pWsBhCSrw/CM6U6Lx9eDQ1">365 Celebridades</div>
+        <div class="selectblock" data-url="https://tinyhost.pw/list/1VovG0CPv/CM6U6Lx9eDQ1">Cartomancia</div>
+        <div class="selectblock" data-url="https://tinyhost.pw/list/qhaVxnfY9/CM6U6Lx9eDQ1">Nomes de Pelúcia</div>
+        <div class="selectblock" data-url="https://tinyhost.pw/list/V7i2zWQyA/CM6U6Lx9eDQ1">Lugares Mais Lindos</div>
+        <div class="selectblock" data-url="https://tinyhost.pw/list/qsDqKXj9d/CM6U6Lx9eDQ1">Símbolos ESP</div>
       </div>
     </div>
   </div>
 
-  <!-- Footer removido/oculto -->
-
   <script>
-    // Redirecionamento sem voltar
-    document.querySelectorAll('.selectblock').forEach(function(el) {
-      el.addEventListener('click', function() {
-        window.location.replace(this.getAttribute('data-url'));
+    let taps = 0;
+    document.body.addEventListener('click', onTap);
+
+    function onTap() {
+      taps++;
+      if (taps === 3) {
+        document.body.removeEventListener('click', onTap);
+        document.getElementById('content').style.display = 'block';
+        setupRedirects();
+      }
+    }
+
+    function setupRedirects() {
+      document.querySelectorAll('.selectblock').forEach(el => {
+        el.addEventListener('click', () => {
+          window.location.replace(el.getAttribute('data-url'));
+        });
       });
-    });
+    }
   </script>
 </body>
 </html>
