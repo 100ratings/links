@@ -15,11 +15,7 @@
       background: #fff;
       font-family: 'Source Sans Pro', sans-serif;
       color: #333;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      flex-direction: column;
+      min-height: 100vh;
     }
     #fake-error {
       font-family: monospace;
@@ -29,12 +25,13 @@
       border-radius: 8px;
       box-shadow: 0 0 6px rgba(0,0,0,0.1);
       text-align: left;
-      max-width: 600px;
-      display: block;
+      max-width: 90%;
+      width: fit-content;
+      margin: 60px auto 0 auto; /* Topo como na imagem */
     }
     #fake-error h1 {
       margin: 0 0 10px 0;
-      font-size: 1.2em;
+      font-size: 1.1em;
     }
     #fake-error pre {
       background: #f0f0f0;
