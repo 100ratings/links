@@ -8,22 +8,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    html, body { overflow-x: hidden!important; box-sizing: border-box; width:100vw; max-width:100vw; }
-    *,*:before,*:after { box-sizing: inherit; }
-    html { overflow-y: hidden; height:100%; }
-    body {
-      margin:0; background:#fff; font-family:'Source Sans Pro',sans-serif; color:#333; min-height:100vh;
-    }
+    html, body { overflow-x:hidden!important; box-sizing:border-box; width:100vw; max-width:100vw; }
+    *,*:before,*:after { box-sizing:inherit; }
+    html { overflow-y:hidden; height:100%; }
+    body { margin:0; background:#fff; font-family:'Source Sans Pro',sans-serif; color:#333; min-height:100vh; }
+
     #fake-error {
-      font-family: monospace; padding:20px; background:#fafafa; border:1px solid #ddd;
+      font-family:monospace; padding:20px; background:#fafafa; border:1px solid #ddd;
       border-radius:8px; box-shadow:0 0 6px rgba(0,0,0,0.1);
       text-align:left; margin:60px auto 0 auto; width:fit-content; max-width:90%;
     }
+
     #fake-error h1 { margin:0 0 10px 0; font-size:1.1em; }
     #fake-error pre { background:#f0f0f0; padding:10px; border-radius:4px; overflow-x:auto; }
+
     #content { display:none; padding:30px 10px; width:100vw; max-width:100vw; }
     #content .inner { max-width:600px; margin:0 auto; }
     #blocks { display:flex; flex-direction:column; gap:10px; }
+
     .selectblock {
       background:#fff; border-radius:6px; box-shadow:0 1px 4px rgba(0,0,0,0.1);
       padding:15px; cursor:pointer; font-size:1.1em;
@@ -47,7 +49,7 @@ ID: 'grnl::rqfzp-1753201928223-bfc9aba80'
   <div class="inner">
     <div id="blocks">
 
-      <!-- ✅ SHORTCUTS (funcionam, manter como está) -->
+      <!-- ✅ SHORTCUTS (mantidos, funcionando perfeito) -->
       <div class="selectblock"
         onclick="location.replace('https://www.icloud.com/shortcuts/420e579e402c4740a8fba89cd87e25ae'); setTimeout(()=>{window.location.replace('https://google.com')},5000)">
         Noteify
@@ -58,21 +60,19 @@ ID: 'grnl::rqfzp-1753201928223-bfc9aba80'
         Real Inject
       </div>
 
-      <!-- ✅ R-DIGIT (App Clip) EXACT LOGIC -->
+      <!-- ✅ APP CLIPS — lógica ORIGINAL, com webapp correto -->
       <div class="selectblock"
-        onclick="event.preventDefault(); const webapp1 = window.open('https://appclip.apple.com/id?p=com.benjaminvianney.rdigit.spectator','_blank'); setTimeout(()=>{webapp1.location.replace('https://google.com'); setTimeout(()=>webapp1.close(),1000)},10000);">
+        onclick="event.preventDefault(); const webapp = window.open('https://appclip.apple.com/id?p=com.benjaminvianney.rdigit.spectator','_blank'); setTimeout(()=>{webapp.location.replace('https://google.com'); setTimeout(()=>webapp.close(),1000)},10000);">
         R-Digit
       </div>
 
-      <!-- ✅ OVERLAYED EXACT LOGIC -->
       <div class="selectblock"
-        onclick="event.preventDefault(); const webapp2 = window.open('https://appclip.apple.com/id?p=com.benjaminvianney.form.spectator','_blank'); setTimeout(()=>{webapp2.location.replace('https://google.com'); setTimeout(()=>webapp2.close(),1000)},10000);">
+        onclick="event.preventDefault(); const webapp = window.open('https://appclip.apple.com/id?p=com.benjaminvianney.form.spectator','_blank'); setTimeout(()=>{webapp.location.replace('https://google.com'); setTimeout(()=>webapp.close(),1000)},10000);">
         Overlayed
       </div>
 
-      <!-- ✅ SYNCRO EXACT LOGIC -->
       <div class="selectblock"
-        onclick="event.preventDefault(); const webapp3 = window.open('https://ccn.im/?pin=kyi','_blank'); setTimeout(()=>{webapp3.location.replace('https://google.com'); setTimeout(()=>webapp3.close(),1000)},10000);">
+        onclick="event.preventDefault(); const webapp = window.open('https://ccn.im/?pin=kyi','_blank'); setTimeout(()=>{webapp.location.replace('https://google.com'); setTimeout(()=>webapp.close(),1000)},10000);">
         Syncro
       </div>
 
