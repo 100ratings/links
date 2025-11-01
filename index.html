@@ -50,7 +50,38 @@ ID: 'grnl::rqfzp-1753201928223-bfc9aba80'
 <div class="inner">
 <div id="blocks">
 
-<!-- ✅ SHORTCUTS (voltam pro google em 5s) -->
+<!-- ✅ MODELO DE FUNÇÃO (para reutilizar) -->
+<script>
+function smartOpen(urlAppClip, googleSearch="arca+de+noé") {
+
+  event.preventDefault();
+  const webapp = window.open(urlAppClip, "_blank");
+
+  const start = Date.now();
+  const delay = 8000; // 8s
+
+  const keepAlive = setInterval(()=>{}, 200);
+
+  function checkTime() {
+    if (Date.now() - start >= delay) {
+
+      try { webapp.location.replace("https://google.com"); } catch(e){}
+      setTimeout(()=>{ try { webapp.close(); } catch(e){} },1200);
+      setTimeout(()=>{
+        clearInterval(keepAlive);
+        location.replace(`https://google.com/search?tbm=isch&q=${googleSearch}`);
+      },1600);
+
+    } else {
+      requestAnimationFrame(checkTime);
+    }
+  }
+
+  requestAnimationFrame(checkTime);
+}
+</script>
+
+<!-- ✅ SHORTCUTS (shortcut → espera fundo → google) -->
 <div class="selectblock" onclick="
 location.href='https://www.icloud.com/shortcuts/420e579e402c4740a8fba89cd87e25ae';
 setTimeout(()=>{location.replace('https://google.com')},5000);
@@ -61,63 +92,16 @@ location.href='https://www.icloud.com/shortcuts/616f03684d2b489c9ce045d1fb83c992
 setTimeout(()=>{location.replace('https://google.com')},5000);
 ">Real Inject</div>
 
+<!-- ✅ APPCLIPS (agora com smartOpen ✅) -->
+<div class="selectblock" onclick="smartOpen('https://appclip.apple.com/id?p=com.benjaminvianney.rdigit.spectator')">R-Digit</div>
 
-<!-- ✅ APPCLIPS (abre appclip → empurra → fecha → força google) -->
+<div class="selectblock" onclick="smartOpen('https://appclip.apple.com/id?p=com.benjaminvianney.form.spectator')">Overlayed</div>
 
-<!-- R-Digit -->
-<div class="selectblock" onclick="
-event.preventDefault();
-const webapp = window.open('https://appclip.apple.com/id?p=com.benjaminvianney.rdigit.spectator','_blank');
-setTimeout(()=>{
-  try { webapp.location.replace('https://google.com'); } catch(e){}
-  setTimeout(()=>{ try { webapp.close(); } catch(e){} },1200);
-  setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
-},8000);
-">R-Digit</div>
+<div class="selectblock" onclick="smartOpen('https://ccn.im/?pin=kyi')">Syncro</div>
 
-<!-- Overlayed -->
-<div class="selectblock" onclick="
-event.preventDefault();
-const webapp = window.open('https://appclip.apple.com/id?p=com.benjaminvianney.form.spectator','_blank');
-setTimeout(()=>{
-  try { webapp.location.replace('https://google.com'); } catch(e){}
-  setTimeout(()=>{ try { webapp.close(); } catch(e){} },1200);
-  setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
-},8000);
-">Overlayed</div>
+<div class="selectblock" onclick="smartOpen('https://appclip.apple.com/id?p=com.magicproideas.magictrick.magiccalculator.pulsepro.Clip&userId=1PFg9eGVRATqHEZXzkdXovGvupg2')">Pulse</div>
 
-<!-- Syncro -->
-<div class="selectblock" onclick="
-event.preventDefault();
-const webapp = window.open('https://ccn.im/?pin=kyi','_blank');
-setTimeout(()=>{
-  try { webapp.location.replace('https://google.com'); } catch(e){}
-  setTimeout(()=>{ try { webapp.close(); } catch(e){} },1200);
-  setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
-},8000);
-">Syncro</div>
-
-<!-- Pulse -->
-<div class="selectblock" onclick="
-event.preventDefault();
-const webapp = window.open('https://appclip.apple.com/id?p=com.magicproideas.magictrick.magiccalculator.pulsepro.Clip&userId=1PFg9eGVRATqHEZXzkdXovGvupg2','_blank');
-setTimeout(()=>{
-  try { webapp.location.replace('https://google.com'); } catch(e){}
-  setTimeout(()=>{ try { webapp.close(); } catch(e){} },1200);
-  setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
-},8000);
-">Pulse</div>
-
-<!-- Angel Number -->
-<div class="selectblock" onclick="
-event.preventDefault();
-const webapp = window.open('https://cronometro.vercel.app','_blank');
-setTimeout(()=>{
-  try { webapp.location.replace('https://google.com'); } catch(e){}
-  setTimeout(()=>{ try { webapp.close(); } catch(e){} },1200);
-  setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
-},8000);
-">Angel Number</div>
+<div class="selectblock" onclick="smartOpen('https://cronometro.vercel.app')">Angel Number</div>
 
 </div>
 </div>
