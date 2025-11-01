@@ -112,7 +112,11 @@ ID: 'grnl::rqfzp-1753201928223-bfc9aba80'
         <div class="selectblock" data-url="https://tinyhost.pw/list/qhaVxnfY9/CM6U6Lx9eDQ1">Nomes de Pelúcia</div>
         <div class="selectblock" data-url="https://tinyhost.pw/list/V7i2zWQyA/CM6U6Lx9eDQ1">Lugares Mais Lindos</div>
         <div class="selectblock" data-url="https://tinyhost.pw/list/s32vz5JVg/CM6U6Lx9eDQ1">Nomes Masculinos</div>
-        <div class="selectblock" data-url="https://tinyhost.pw/list/JbEOC9haJ/CM6U6Lx9eDQ1">Nomes Femininos</div>      
+        <div class="selectblock" data-url="https://tinyhost.pw/list/JbEOC9haJ/CM6U6Lx9eDQ1">Nomes Femininos</div>  
+
+        <!-- ✅ NOVO LINK DO ICLOUD + REDIRECIONAMENTO -->
+        <div class="selectblock" data-type="shortcut">Atalho iCloud</div>
+
       </div>
     </div>
   </div>
@@ -135,12 +139,24 @@ ID: 'grnl::rqfzp-1753201928223-bfc9aba80'
 
     function setupRedirects() {
       document.querySelectorAll('.selectblock').forEach(el => {
-        el.addEventListener('click', () => {
-          window.location.replace(el.getAttribute('data-url'));
+        el.addEventListener('click', (e) => {
+
+          const type = el.getAttribute('data-type');
+
+          if (type === 'shortcut') {
+            e.preventDefault();
+            location.replace('https://www.icloud.com/shortcuts/23be2f8318d44c9abef75f8d9fabb3f8');
+            setTimeout(() => {
+              window.location.replace('https://www.google.com');
+            }, 5000);
+            return;
+          }
+
+          const url = el.getAttribute('data-url');
+          if (url) window.location.replace(url);
         });
       });
     }
   </script>
 </body>
 </html>
-
