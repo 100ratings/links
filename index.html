@@ -167,18 +167,21 @@ function onTap() {
   }
 }
 
-// AppClip opener
+// ✅ FIX PARA APPCLIPS REDIRECIONAREM NA ABA CERTA
 function openAppClip(url, returnUrl, time) {
   const webapp = window.open(url, "_blank");
+
   setTimeout(() => {
-    try { webapp.location.replace(returnUrl); } catch(e){}
+    try { webapp.location.href = returnUrl; } catch(e){}
+
     setTimeout(() => {
       try { webapp.close(); } catch(e){} 
     }, 1000);
+
   }, time);
 }
 
-// Setup
+// Setup event listeners
 function setupActions() {
   document.querySelectorAll('.selectblock').forEach(el => {
     el.addEventListener('click', e => {
