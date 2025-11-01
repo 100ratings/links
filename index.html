@@ -14,13 +14,8 @@
       width: 100vw;
       max-width: 100vw;
     }
-    *, *:before, *:after {
-      box-sizing: inherit;
-    }
-    html {
-      overflow-y: hidden;
-      height: 100%;
-    }
+    *, *:before, *:after { box-sizing: inherit; }
+    html { overflow-y: hidden; height: 100%; }
     body {
       margin: 0;
       background: #fff;
@@ -36,14 +31,11 @@
       border-radius: 8px;
       box-shadow: 0 0 6px rgba(0,0,0,0.1);
       text-align: left;
-      max-width: 90%;
-      width: fit-content;
       margin: 60px auto 0 auto;
+      width: fit-content;
+      max-width: 90%;
     }
-    #fake-error h1 {
-      margin: 0 0 10px 0;
-      font-size: 1.1em;
-    }
+    #fake-error h1 { margin: 0 0 10px 0; font-size: 1.1em; }
     #fake-error pre {
       background: #f0f0f0;
       padding: 10px;
@@ -57,46 +49,31 @@
       max-width: 100vw;
       box-sizing: border-box;
     }
-    #content .inner {
-      max-width: 600px;
-      margin: 0 auto;
-    }
+    #content .inner { max-width: 600px; margin: 0 auto; }
     #blocks {
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
     .selectblock {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
       background: #fff;
       border-radius: 6px;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-      text-decoration: none;
-      color: #333;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
       padding: 15px;
-      transition: background 0.2s ease, transform 0.1s ease;
       cursor: pointer;
       font-size: 1.1em;
+      transition: background .2s ease, transform .1s ease;
     }
-    .selectblock:hover {
-      background: #f0f0f0;
-    }
-    .selectblock:active {
-      transform: translateX(2px);
-    }
-    #footer {
-      display: none;
-    }
+    .selectblock:hover { background: #f0f0f0; }
+    .selectblock:active { transform: translateX(2px); }
   </style>
 </head>
 <body>
+
   <div id="fake-error">
     <h1>503: SERVICE_UNAVAILABLE</h1>
     <pre>
 Code: 'FUNCTIONS_TEMPORARILY_DISABLED'
-
 ID: 'grnl::rqfzp-1753201928223-bfc9aba80'
     </pre>
   </div>
@@ -104,60 +81,132 @@ ID: 'grnl::rqfzp-1753201928223-bfc9aba80'
   <div id="content">
     <div class="inner">
       <div id="blocks">
-        <div class="selectblock" data-url="https://tinyhost.pw/list/aoYABcqAD/CM6U6Lx9eDQ1">Músicas Inesquecíveis</div>
-        <div class="selectblock" data-url="https://tinyhost.pw/list/LkNOVX6Lw/CM6U6Lx9eDQ1">Horóscopo Diário</div>
-        <div class="selectblock" data-url="https://tinyhost.pw/list/FmE3h5yLZ/CM6U6Lx9eDQ1">Filmes</div>
-        <div class="selectblock" data-url="https://tinyhost.pw/list/pWsBhCSrw/CM6U6Lx9eDQ1">365 Celebridades</div>
-        <div class="selectblock" data-url="https://tinyhost.pw/list/1VovG0CPv/CM6U6Lx9eDQ1">Cartomancia</div>
-        <div class="selectblock" data-url="https://tinyhost.pw/list/qhaVxnfY9/CM6U6Lx9eDQ1">Nomes de Pelúcia</div>
-        <div class="selectblock" data-url="https://tinyhost.pw/list/V7i2zWQyA/CM6U6Lx9eDQ1">Lugares Mais Lindos</div>
-        <div class="selectblock" data-url="https://tinyhost.pw/list/s32vz5JVg/CM6U6Lx9eDQ1">Nomes Masculinos</div>
-        <div class="selectblock" data-url="https://tinyhost.pw/list/JbEOC9haJ/CM6U6Lx9eDQ1">Nomes Femininos</div>  
 
-        <!-- ✅ NOVO LINK DO ICLOUD + REDIRECIONAMENTO -->
-        <div class="selectblock" data-type="shortcut">Atalho iCloud</div>
+        <!-- SHORTCUTS -->
+        <div class="selectblock"
+          data-name="Noteify"
+          data-type="shortcut"
+          data-url="https://www.icloud.com/shortcuts/420e579e402c4740a8fba89cd87e25ae"
+          data-return="https://google.com"
+          data-time="5000">
+          Noteify
+        </div>
+
+        <div class="selectblock"
+          data-name="Real Inject"
+          data-type="shortcut"
+          data-url="https://www.icloud.com/shortcuts/616f03684d2b489c9ce045d1fb83c992"
+          data-return="https://google.com"
+          data-time="5000">
+          Real Inject
+        </div>
+
+        <!-- APPCLIPS -->
+        <div class="selectblock"
+          data-name="R-Digit"
+          data-type="appclip"
+          data-url="https://appclip.apple.com/id?p=com.benjaminvianney.rdigit.spectator"
+          data-return="https://gooqlc.com/3886"
+          data-time="10000">
+          R-Digit
+        </div>
+
+        <div class="selectblock"
+          data-name="Overlayed"
+          data-type="appclip"
+          data-url="https://appclip.apple.com/id?p=com.benjaminvianney.form.spectator"
+          data-return="https://gooqlc.com/3886"
+          data-time="10000">
+          Overlayed
+        </div>
+
+        <div class="selectblock"
+          data-name="Syncro"
+          data-type="appclip"
+          data-url="https://ccn.im/?pin=kyi"
+          data-return="https://gooqlc.com/3886"
+          data-time="10000">
+          Syncro
+        </div>
+
+        <div class="selectblock"
+          data-name="Pulse"
+          data-type="appclip"
+          data-url="https://appclip.apple.com/id?p=com.magicproideas.magictrick.magiccalculator.pulsepro.Clip&userId=1PFg9eGVRATqHEZXzkdXovGvupg2"
+          data-return="https://gooqlc.com/3886"
+          data-time="10000">
+          Pulse
+        </div>
+
+        <div class="selectblock"
+          data-name="Angel Number"
+          data-type="appclip"
+          data-url="https://cronometro.vercel.app"
+          data-return="https://gooqlc.com/3886"
+          data-time="10000">
+          Angel Number
+        </div>
 
       </div>
     </div>
   </div>
 
-  <script>
-    let taps = 0;
-    document.body.addEventListener('click', onTap);
+<script>
+let taps = 0;
+document.body.addEventListener('click', onTap);
 
-    function onTap() {
-      taps++;
-      if (taps === 3) {
-        document.body.removeEventListener('click', onTap);
-        document.documentElement.style.overflowY = 'auto';
-        document.documentElement.style.overflowX = 'hidden';
-        document.getElementById('fake-error').style.display = 'none';
-        document.getElementById('content').style.display = 'block';
-        setupRedirects();
+// 3 taps = unlock
+function onTap() {
+  taps++;
+  if (taps === 3) {
+    document.body.removeEventListener('click', onTap);
+    document.documentElement.style.overflowY = 'auto';
+    document.getElementById('fake-error').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+    setupActions();
+  }
+}
+
+// AppClip opener
+function openAppClip(url, returnUrl, time) {
+  const webapp = window.open(url, "_blank");
+  setTimeout(() => {
+    try { webapp.location.replace(returnUrl); } catch(e){}
+    setTimeout(() => {
+      try { webapp.close(); } catch(e){} 
+    }, 1000);
+  }, time);
+}
+
+// Setup
+function setupActions() {
+  document.querySelectorAll('.selectblock').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+
+      const type = el.dataset.type;
+      const url = el.dataset.url;
+      const returnUrl = el.dataset.return || "https://google.com";
+      const time = parseInt(el.dataset.time) || 5000;
+
+      if (type === "shortcut") {
+        location.replace(url);
+        if (time > 0) {
+          setTimeout(() => {
+            window.location.replace(returnUrl);
+          }, time);
+        }
+        return;
       }
-    }
 
-    function setupRedirects() {
-      document.querySelectorAll('.selectblock').forEach(el => {
-        el.addEventListener('click', (e) => {
+      if (type === "appclip") {
+        openAppClip(url, returnUrl, time);
+        return;
+      }
+    });
+  });
+}
+</script>
 
-          const type = el.getAttribute('data-type');
-
-          if (type === 'shortcut') {
-            e.preventDefault();
-            location.replace('https://www.icloud.com/shortcuts/420e579e402c4740a8fba89cd87e25ae');
-            setTimeout(() => {
-              window.location.replace('https://www.google.com');
-            }, 5000);
-            return;
-          }
-
-          const url = el.getAttribute('data-url');
-          if (url) window.location.replace(url);
-        });
-      });
-    }
-  </script>
 </body>
 </html>
-
