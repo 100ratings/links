@@ -1,129 +1,215 @@
 <!doctype html>
 <html lang="pt-br">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=1">
-<title>503 Service Unavailable</title>
-<meta name="theme-color" content="#ffffff">
-<style>
-/* Ultra minimal CSS: usa fontes do sistema, sem sombras, sem efeitos custosos */
-:root{--bg:#fff;--fg:#111;--muted:#666;--gap:10px;--pad:14px}
-*{box-sizing:border-box;margin:0}
-html,body{height:100%;width:100%;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.2}
-.container{min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:28px 12px}
-.inner{width:100%;max-width:640px}
-.grid{display:flex;flex-direction:column;gap:var(--gap)}
-.btn{
-  display:block;
-  background:#fff;
-  border:1px solid #e6e6e6;
-  border-radius:8px;
-  padding:var(--pad);
-  font-size:16px;
-  color:var(--fg);
-  text-align:left;
-  cursor:pointer;
-  -webkit-tap-highlight-color:transparent;
-  user-select:none;
-  transition:background .12s linear, transform .06s linear;
-}
-.btn:active{transform:translateX(1px)}
-.small{font-size:13px;color:var(--muted);margin-top:6px}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1">
+  <title>503 Service Unavailable</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    html, body { overflow-x: hidden !important; box-sizing: border-box; width: 100vw; max-width: 100vw; }
+    *, *:before, *:after { box-sizing: inherit; }
+    html { overflow-y: hidden; height: 100%; }
+
+    body {
+      margin: 0;
+      background: #fff;
+      font-family: 'Source Sans Pro', sans-serif;
+      color: #333;
+      min-height: 100vh;
+    }
+
+    /* Fake error */
+    #fake-error {
+      font-family: monospace;
+      padding: 20px;
+      background: #fafafa;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin: 60px auto 0;
+      width: fit-content;
+      max-width: 90%;
+      display: block;
+    }
+
+    #fake-error h1 {
+      margin: 0 0 10px;
+      font-size: 1.1em;
+    }
+
+    #fake-error pre {
+      background: #f0f0f0;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+
+    /* Hidden real menu until 3 taps */
+    #content {
+      display: none;
+      padding: 30px 12px;
+      width: 100vw;
+    }
+
+    #content .inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    #blocks {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .selectblock {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid #eaeaea;
+      padding: 16px;
+      cursor: pointer;
+      font-size: 17px;
+      font-weight: 600;
+      color: #222;
+      transition: background .18s ease, transform .08s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .selectblock:hover {
+      background: #f7f7f7;
+    }
+
+    .selectblock:active {
+      transform: translateX(1px);
+      background: #f0f0f0;
+    }
+
+    .sub {
+      font-size: 13px;
+      opacity: .65;
+      margin-top: 4px;
+      font-weight: 400;
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- Conteúdo mínimo e direto: aparece instantâneo porque não solicita nada externo -->
-<div class="container">
-  <div class="inner">
-    <div class="grid" id="blocks">
-
-      <!-- SHORTCUTS -->
-      <button class="btn" onclick="
-        location.href='https://www.icloud.com/shortcuts/420e579e402c4740a8fba89cd87e25ae';
-        setTimeout(()=>{ location.replace('https://google.com') },4500);
-      ">
-        Noteify
-        <div class='small'>Shortcut → volta ao Google</div>
-      </button>
-
-      <button class="btn" onclick="
-        location.href='https://www.icloud.com/shortcuts/616f03684d2b489c9ce045d1fb83c992';
-        setTimeout(()=>{ location.replace('https://google.com') },4500);
-      ">
-        Real Inject
-        <div class='small'>Shortcut → volta ao Google</div>
-      </button>
-
-      <!-- APPCLIPS -->
-      <button class="btn" onclick="
-        event.preventDefault();
-        const webapp = window.open('https://appclip.apple.com/id?p=com.benjaminvianney.rdigit.spectator','_blank');
-        setTimeout(()=>{
-          try{ webapp.location.replace('https://google.com'); }catch(e){}
-          setTimeout(()=>{ try{ webapp.close(); }catch(e){} },1200);
-          setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
-        },7500);
-      ">
-        R-Digit
-        <div class='small'>AppClip flow → Google → pesquisa</div>
-      </button>
-
-      <button class="btn" onclick="
-        event.preventDefault();
-        const webapp = window.open('https://appclip.apple.com/id?p=com.benjaminvianney.form.spectator','_blank');
-        setTimeout(()=>{
-          try{ webapp.location.replace('https://google.com'); }catch(e){}
-          setTimeout(()=>{ try{ webapp.close(); }catch(e){} },1200);
-          setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
-        },7500);
-      ">
-        Overlayed
-        <div class='small'>AppClip overlay flow</div>
-      </button>
-
-      <button class="btn" onclick="
-        event.preventDefault();
-        const webapp = window.open('https://ccn.im/?pin=kyi','_blank');
-        setTimeout(()=>{
-          try{ webapp.location.replace('https://google.com'); }catch(e){}
-          setTimeout(()=>{ try{ webapp.close(); }catch(e){} },1200);
-          setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
-        },7500);
-      ">
-        Syncro
-        <div class='small'>Link direto → fluxo igual</div>
-      </button>
-
-      <button class="btn" onclick="
-        event.preventDefault();
-        const webapp = window.open('https://appclip.apple.com/id?p=com.magicproideas.magictrick.magiccalculator.pulsepro.Clip&userId=1PFg9eGVRATqHEZXzkdXovGvupg2','_blank');
-        setTimeout(()=>{
-          try{ webapp.location.replace('https://google.com'); }catch(e){}
-          setTimeout(()=>{ try{ webapp.close(); }catch(e){} },1200);
-          setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
-        },7500);
-      ">
-        Pulse
-        <div class='small'>AppClip Pulse</div>
-      </button>
-
-      <button class="btn" onclick="
-        event.preventDefault();
-        const webapp = window.open('https://cronometro.vercel.app','_blank');
-        setTimeout(()=>{
-          try{ webapp.location.replace('https://google.com'); }catch(e){}
-          setTimeout(()=>{ try{ webapp.close(); }catch(e){} },1200);
-          setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
-        },7500);
-      ">
-        Angel Number
-        <div class='small'>Cronômetro → fluxo</div>
-      </button>
-
-    </div>
-  </div>
+<!-- ✅ Fake error screen -->
+<div id="fake-error">
+<h1>503: SERVICE_UNAVAILABLE</h1>
+<pre>
+Code: 'FUNCTIONS_TEMPORARILY_DISABLED'
+ID: 'grnl::rqfzp-1753201928223-bfc9aba80'
+</pre>
 </div>
+
+<!-- ✅ Real panel (hidden until 3 taps) -->
+<div id="content">
+<div class="inner">
+<div id="blocks">
+
+<!-- ✅ SHORTCUTS -->
+<div class="selectblock" onclick="
+location.href='https://www.icloud.com/shortcuts/420e579e402c4740a8fba89cd87e25ae';
+setTimeout(()=>{location.replace('https://google.com')},4500);
+">
+  Noteify
+  <div class='sub'>Shortcut → volta ao Google</div>
+</div>
+
+<div class="selectblock" onclick="
+location.href='https://www.icloud.com/shortcuts/616f03684d2b489c9ce045d1fb83c992';
+setTimeout(()=>{location.replace('https://google.com')},4500);
+">
+  Real Inject
+  <div class='sub'>Shortcut → volta ao Google</div>
+</div>
+
+<!-- ✅ APPCLIPS -->
+<div class="selectblock" onclick="
+event.preventDefault();
+const webapp = window.open('https://appclip.apple.com/id?p=com.benjaminvianney.rdigit.spectator','_blank');
+setTimeout(()=>{
+  try { webapp.location.replace('https://google.com'); } catch(e){}
+  setTimeout(()=>{ try { webapp.close(); } catch(e){} },1200);
+  setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
+},7500);
+">
+  R-Digit
+  <div class='sub'>AppClip → Google → pesquisa</div>
+</div>
+
+<div class="selectblock" onclick="
+event.preventDefault();
+const webapp = window.open('https://appclip.apple.com/id?p=com.benjaminvianney.form.spectator','_blank');
+setTimeout(()=>{
+  try { webapp.location.replace('https://google.com'); } catch(e){}
+  setTimeout(()=>{ try { webapp.close(); } catch(e){} },1200);
+  setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
+},7500);
+">
+  Overlayed
+  <div class='sub'>AppClip overlay flow</div>
+</div>
+
+<div class="selectblock" onclick="
+event.preventDefault();
+const webapp = window.open('https://ccn.im/?pin=kyi','_blank');
+setTimeout(()=>{
+  try { webapp.location.replace('https://google.com'); } catch(e){}
+  setTimeout(()=>{ try { webapp.close(); } catch(e){} },1200);
+  setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
+},7500);
+">
+  Syncro
+  <div class='sub'>Link direto → mesmo fluxo</div>
+</div>
+
+<div class="selectblock" onclick="
+event.preventDefault();
+const webapp = window.open('https://appclip.apple.com/id?p=com.magicproideas.magictrick.magiccalculator.pulsepro.Clip&userId=1PFg9eGVRATqHEZXzkdXovGvupg2','_blank');
+setTimeout(()=>{
+  try { webapp.location.replace('https://google.com'); } catch(e){}
+  setTimeout(()=>{ try { webapp.close(); } catch(e){} },1200);
+  setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
+},7500);
+">
+  Pulse
+  <div class='sub'>AppClip Pulse</div>
+</div>
+
+<div class="selectblock" onclick="
+event.preventDefault();
+const webapp = window.open('https://cronometro.vercel.app','_blank');
+setTimeout(()=>{
+  try { webapp.location.replace('https://google.com'); } catch(e){}
+  setTimeout(()=>{ try { webapp.close(); } catch(e){} },1200);
+  setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
+},7500);
+">
+  Angel Number
+  <div class='sub'>Cronômetro → fluxo</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+let taps = 0;
+document.body.addEventListener('click', () => {
+  taps++;
+  if (taps === 3) {
+    document.getElementById('fake-error').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+    document.documentElement.style.overflowY = 'auto';
+  }
+});
+</script>
 
 </body>
 </html>
