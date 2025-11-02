@@ -1,121 +1,128 @@
 <!doctype html>
 <html lang="pt-br">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1">
-  <title>Fast Launch</title>
-
-  <!-- Mantendo sua fonte Google para não mudar o visual -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
-
-  <!-- Preconnect para destinos que você usa -->
-  <link rel="preconnect" href="https://google.com">
-  <link rel="preconnect" href="https://www.icloud.com">
-  <link rel="preconnect" href="https://appclip.apple.com">
-  <link rel="preconnect" href="https://ccn.im">
-  <link rel="preconnect" href="https://cronometro.vercel.app">
-
-  <!-- Prefetch das páginas finais (não altera lógica, só acelera) -->
-  <link rel="prefetch" href="https://google.com">
-  <link rel="prefetch" href="https://google.com/search?tbm=isch&q=arca+de+noé">
-
-  <style>
-    html, body { overflow-x: hidden !important; box-sizing: border-box; width: 100vw; max-width: 100vw; }
-    *, *:before, *:after { box-sizing: inherit; }
-    body {
-      margin: 0; background: #fff; font-family: 'Source Sans Pro', sans-serif;
-      color: #333; min-height: 100vh;
-    }
-    #content { padding: 30px 10px; width: 100vw; box-sizing: border-box; }
-    #content .inner { max-width: 600px; margin: 0 auto; }
-    #blocks { display: flex; flex-direction: column; gap: 10px; }
-    .selectblock {
-      background: #fff; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-      padding: 15px; cursor: pointer; font-size: 1.1em;
-      transition: background .2s ease, transform .1s ease;
-      will-change: transform;
-    }
-    .selectblock:hover { background: #f0f0f0; }
-    .selectblock:active { transform: translateX(2px); }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=1">
+<title>503 Service Unavailable</title>
+<meta name="theme-color" content="#ffffff">
+<style>
+/* Ultra minimal CSS: usa fontes do sistema, sem sombras, sem efeitos custosos */
+:root{--bg:#fff;--fg:#111;--muted:#666;--gap:10px;--pad:14px}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;width:100%;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.2}
+.container{min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:28px 12px}
+.inner{width:100%;max-width:640px}
+.grid{display:flex;flex-direction:column;gap:var(--gap)}
+.btn{
+  display:block;
+  background:#fff;
+  border:1px solid #e6e6e6;
+  border-radius:8px;
+  padding:var(--pad);
+  font-size:16px;
+  color:var(--fg);
+  text-align:left;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;
+  transition:background .12s linear, transform .06s linear;
+}
+.btn:active{transform:translateX(1px)}
+.small{font-size:13px;color:var(--muted);margin-top:6px}
+</style>
 </head>
 <body>
 
-<div id="content">
-<div class="inner">
-<div id="blocks">
+<!-- Conteúdo mínimo e direto: aparece instantâneo porque não solicita nada externo -->
+<div class="container">
+  <div class="inner">
+    <div class="grid" id="blocks">
 
-  <!-- ✅ SHORTCUTS -->
-  <div class="selectblock" onclick="
-  location.href='https://www.icloud.com/shortcuts/420e579e402c4740a8fba89cd87e25ae';
-  setTimeout(()=>{location.replace('https://google.com')},4500);
-  ">Noteify</div>
+      <!-- SHORTCUTS -->
+      <button class="btn" onclick="
+        location.href='https://www.icloud.com/shortcuts/420e579e402c4740a8fba89cd87e25ae';
+        setTimeout(()=>{ location.replace('https://google.com') },4500);
+      ">
+        Noteify
+        <div class='small'>Shortcut → volta ao Google</div>
+      </button>
 
-  <div class="selectblock" onclick="
-  location.href='https://www.icloud.com/shortcuts/616f03684d2b489c9ce045d1fb83c992';
-  setTimeout(()=>{location.replace('https://google.com')},4500);
-  ">Real Inject</div>
+      <button class="btn" onclick="
+        location.href='https://www.icloud.com/shortcuts/616f03684d2b489c9ce045d1fb83c992';
+        setTimeout(()=>{ location.replace('https://google.com') },4500);
+      ">
+        Real Inject
+        <div class='small'>Shortcut → volta ao Google</div>
+      </button>
 
-  <!-- ✅ APPCLIPS -->
-  <!-- R-Digit -->
-  <div class="selectblock" onclick="
-  event.preventDefault();
-  const webapp = window.open('https://appclip.apple.com/id?p=com.benjaminvianney.rdigit.spectator','_blank'); /* sem 'noopener' */
-  setTimeout(()=>{
-    try { webapp.location.replace('https://google.com'); } catch(e){}
-    setTimeout(()=>{ try { webapp.close(); } catch(e){} },1200);
-    setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
-  },7500);
-  ">R-Digit</div>
+      <!-- APPCLIPS -->
+      <button class="btn" onclick="
+        event.preventDefault();
+        const webapp = window.open('https://appclip.apple.com/id?p=com.benjaminvianney.rdigit.spectator','_blank');
+        setTimeout(()=>{
+          try{ webapp.location.replace('https://google.com'); }catch(e){}
+          setTimeout(()=>{ try{ webapp.close(); }catch(e){} },1200);
+          setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
+        },7500);
+      ">
+        R-Digit
+        <div class='small'>AppClip flow → Google → pesquisa</div>
+      </button>
 
-  <!-- Overlayed -->
-  <div class="selectblock" onclick="
-  event.preventDefault();
-  const webapp = window.open('https://appclip.apple.com/id?p=com.benjaminvianney.form.spectator','_blank'); /* sem 'noopener' */
-  setTimeout(()=>{
-    try { webapp.location.replace('https://google.com'); } catch(e){}
-    setTimeout(()=>{ try { webapp.close(); } catch(e){} },1200);
-    setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
-  },7500);
-  ">Overlayed</div>
+      <button class="btn" onclick="
+        event.preventDefault();
+        const webapp = window.open('https://appclip.apple.com/id?p=com.benjaminvianney.form.spectator','_blank');
+        setTimeout(()=>{
+          try{ webapp.location.replace('https://google.com'); }catch(e){}
+          setTimeout(()=>{ try{ webapp.close(); }catch(e){} },1200);
+          setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
+        },7500);
+      ">
+        Overlayed
+        <div class='small'>AppClip overlay flow</div>
+      </button>
 
-  <!-- Syncro -->
-  <div class="selectblock" onclick="
-  event.preventDefault();
-  const webapp = window.open('https://ccn.im/?pin=kyi','_blank'); /* sem 'noopener' */
-  setTimeout(()=>{
-    try { webapp.location.replace('https://google.com'); } catch(e){}
-    setTimeout(()=>{ try { webapp.close(); } catch(e){} },1200);
-    setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
-  },7500);
-  ">Syncro</div>
+      <button class="btn" onclick="
+        event.preventDefault();
+        const webapp = window.open('https://ccn.im/?pin=kyi','_blank');
+        setTimeout(()=>{
+          try{ webapp.location.replace('https://google.com'); }catch(e){}
+          setTimeout(()=>{ try{ webapp.close(); }catch(e){} },1200);
+          setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
+        },7500);
+      ">
+        Syncro
+        <div class='small'>Link direto → fluxo igual</div>
+      </button>
 
-  <!-- Pulse -->
-  <div class="selectblock" onclick="
-  event.preventDefault();
-  const webapp = window.open('https://appclip.apple.com/id?p=com.magicproideas.magictrick.magiccalculator.pulsepro.Clip&userId=1PFg9eGVRATqHEZXzkdXovGvupg2','_blank'); /* sem 'noopener' */
-  setTimeout(()=>{
-    try { webapp.location.replace('https://google.com'); } catch(e){}
-    setTimeout(()=>{ try { webapp.close(); } catch(e){} },1200);
-    setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
-  },7500);
-  ">Pulse</div>
+      <button class="btn" onclick="
+        event.preventDefault();
+        const webapp = window.open('https://appclip.apple.com/id?p=com.magicproideas.magictrick.magiccalculator.pulsepro.Clip&userId=1PFg9eGVRATqHEZXzkdXovGvupg2','_blank');
+        setTimeout(()=>{
+          try{ webapp.location.replace('https://google.com'); }catch(e){}
+          setTimeout(()=>{ try{ webapp.close(); }catch(e){} },1200);
+          setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
+        },7500);
+      ">
+        Pulse
+        <div class='small'>AppClip Pulse</div>
+      </button>
 
-  <!-- Angel Number -->
-  <div class="selectblock" onclick="
-  event.preventDefault();
-  const webapp = window.open('https://cronometro.vercel.app','_blank'); /* sem 'noopener' */
-  setTimeout(()=>{
-    try { webapp.location.replace('https://google.com'); } catch(e){}
-    setTimeout(()=>{ try { webapp.close(); } catch(e){} },1200);
-    setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
-  },7500);
-  ">Angel Number</div>
+      <button class="btn" onclick="
+        event.preventDefault();
+        const webapp = window.open('https://cronometro.vercel.app','_blank');
+        setTimeout(()=>{
+          try{ webapp.location.replace('https://google.com'); }catch(e){}
+          setTimeout(()=>{ try{ webapp.close(); }catch(e){} },1200);
+          setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
+        },7500);
+      ">
+        Angel Number
+        <div class='small'>Cronômetro → fluxo</div>
+      </button>
 
-</div>
-</div>
+    </div>
+  </div>
 </div>
 
 </body>
