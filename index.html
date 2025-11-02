@@ -124,14 +124,62 @@ setTimeout(()=>{
 </div>
 
 <script>
-let taps = 0;
-document.body.addEventListener('click', () => {
-  taps++;
-  if (taps === 3) {
-    document.getElementById('fake-error').style.display = 'none';
-    document.getElementById('content').style.display = 'block';
-    document.documentElement.style.overflowY = 'auto';
+/*
+  Controle de fake-screen:
+  - DEFAULT_ENABLE_FAKE: altere aqui para true/false para mudar o comportamento padrão.
+  - Override via URL: ?fake=1 (liga) ou ?fake=0 (desliga)
+  - Override via localStorage: localStorage.setItem('fakeEnabled','1') ou '0'
+*/
+const DEFAULT_ENABLE_FAKE = false; // <-- alterar aqui: false = IR DIRETO ao site; true = tela falsa ativa
+
+function parseBoolish(val) {
+  if (val === null || val === undefined) return null;
+  val = String(val).trim().toLowerCase();
+  if (val === '1' || val === 'true' || val === 'yes' ) return true;
+  if (val === '0' || val === 'false' || val === 'no') return false;
+  return null;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Determina estado final: URL param > localStorage > DEFAULT
+  const urlParam = new URLSearchParams(location.search).get('fake');
+  const lsVal = localStorage.getItem('fakeEnabled');
+  let enableFake = DEFAULT_ENABLE_FAKE;
+
+  const urlParsed = parseBoolish(urlParam);
+  const lsParsed = parseBoolish(lsVal);
+
+  if (urlParsed !== null) {
+    enableFake = urlParsed;
+    console.info('Fake-screen override via URL param:', urlParsed);
+  } else if (lsParsed !== null) {
+    enableFake = lsParsed;
+    console.info('Fake-screen override via localStorage:', lsParsed);
+  } else {
+    console.info('Fake-screen default:', DEFAULT_ENABLE_FAKE);
   }
+
+  const fakeEl = document.getElementById('fake-error');
+  const contentEl = document.getElementById('content');
+
+  if (!enableFake) {
+    // Fake desligado: mostra conteúdo direto
+    if (fakeEl) fakeEl.style.display = 'none';
+    if (contentEl) contentEl.style.display = 'block';
+    document.documentElement.style.overflowY = 'auto';
+    return;
+  }
+
+  // Fake ligado: mantém comportamento anterior (3 taps para mostrar conteúdo)
+  let taps = 0;
+  document.body.addEventListener('click', () => {
+    taps++;
+    if (taps === 3) {
+      if (fakeEl) fakeEl.style.display = 'none';
+      if (contentEl) contentEl.style.display = 'block';
+      document.documentElement.style.overflowY = 'auto';
+    }
+  });
 });
 </script>
 
