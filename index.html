@@ -1,56 +1,46 @@
 <!doctype html>
 <html lang="pt-br">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1">
-  <title>503 Service Unavailable</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    html, body { overflow-x: hidden !important; box-sizing: border-box; width: 100vw; max-width: 100vw; }
-    *, *:before, *:after { box-sizing: inherit; }
-    html { overflow-y: hidden; height: 100%; }
-    body {
-      margin: 0; background: #fff; font-family: 'Source Sans Pro', sans-serif;
-      color: #333; min-height: 100vh;
-    }
-    #fake-error {
-      font-family: monospace; padding: 20px; background: #fafafa;
-      border: 1px solid #ddd; border-radius: 8px; margin: 60px auto 0;
-      width: fit-content; max-width: 90%;
-    }
-    #fake-error h1 { margin: 0 0 10px; font-size: 1.1em; }
-    #fake-error pre {
-      background: #f0f0f0; padding: 10px; border-radius: 4px; overflow-x: auto;
-    }
-    #content { display: none; padding: 30px 10px; width: 100vw; box-sizing: border-box; }
-    #content .inner { max-width: 600px; margin: 0 auto; }
-    #blocks { display: flex; flex-direction: column; gap: 10px; }
-    .selectblock {
-      background: #fff; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-      padding: 15px; cursor: pointer; font-size: 1.1em;
-      transition: background .2s ease, transform .1s ease;
-    }
-    .selectblock:hover { background: #f0f0f0; }
-    .selectblock:active { transform: translateX(2px); }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1">
+<title>Fast Launch</title>
+
+<!-- Carrega fonte antes -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- Preconnect para destinos frequentes -->
+<link rel="preconnect" href="https://google.com">
+<link rel="preconnect" href="https://www.icloud.com">
+<link rel="preconnect" href="https://appclip.apple.com">
+<link rel="preconnect" href="https://ccn.im">
+<link rel="preconnect" href="https://cronometro.vercel.app">
+
+<!-- Prefetch para acelerar o clique -->
+<link rel="prefetch" href="https://google.com">
+<link rel="prefetch" href="https://google.com/search?tbm=isch&q=arca+de+noé">
+
+<style>
+html, body { margin:0; width:100vw; max-width:100vw; overflow-x:hidden; font-family:'Source Sans Pro',sans-serif; background:#fff; color:#333; }
+#content { padding:28px 10px; }
+.inner { max-width:600px; margin:0 auto; }
+#blocks { display:flex; flex-direction:column; gap:10px; }
+.selectblock {
+  background:#fff; border-radius:6px; box-shadow:0 1px 4px rgba(0,0,0,0.1);
+  padding:14px; cursor:pointer; font-size:1.1em;
+  transition:background .18s ease, transform .1s ease;
+  will-change: transform;
+}
+.selectblock:hover { background:#f0f0f0; }
+.selectblock:active { transform:translateX(2px); }
+</style>
 </head>
+
 <body>
+<div id="content"><div class="inner"><div id="blocks">
 
-<div id="fake-error">
-<h1>503: SERVICE_UNAVAILABLE</h1>
-<pre>
-Code: 'FUNCTIONS_TEMPORARILY_DISABLED'
-ID: 'grnl::rqfzp-1753201928223-bfc9aba80'
-</pre>
-</div>
-
-<div id="content">
-<div class="inner">
-<div id="blocks">
-
-<!-- ✅ SHORTCUTS (voltam pro google em 5s) -->
+<!-- ✅ SHORTCUTS -->
 <div class="selectblock" onclick="
 location.href='https://www.icloud.com/shortcuts/420e579e402c4740a8fba89cd87e25ae';
 setTimeout(()=>{location.replace('https://google.com')},4500);
@@ -61,13 +51,10 @@ location.href='https://www.icloud.com/shortcuts/616f03684d2b489c9ce045d1fb83c992
 setTimeout(()=>{location.replace('https://google.com')},4500);
 ">Real Inject</div>
 
-
-<!-- ✅ APPCLIPS (abre appclip → empurra → fecha → força google) -->
-
-<!-- R-Digit -->
+<!-- ✅ APPCLIPS -->
 <div class="selectblock" onclick="
 event.preventDefault();
-const webapp = window.open('https://appclip.apple.com/id?p=com.benjaminvianney.rdigit.spectator','_blank');
+const webapp = window.open('https://appclip.apple.com/id?p=com.benjaminvianney.rdigit.spectator','_blank','noopener');
 setTimeout(()=>{
   try { webapp.location.replace('https://google.com'); } catch(e){}
   setTimeout(()=>{ try { webapp.close(); } catch(e){} },1200);
@@ -75,10 +62,9 @@ setTimeout(()=>{
 },7500);
 ">R-Digit</div>
 
-<!-- Overlayed -->
 <div class="selectblock" onclick="
 event.preventDefault();
-const webapp = window.open('https://appclip.apple.com/id?p=com.benjaminvianney.form.spectator','_blank');
+const webapp = window.open('https://appclip.apple.com/id?p=com.benjaminvianney.form.spectator','_blank','noopener');
 setTimeout(()=>{
   try { webapp.location.replace('https://google.com'); } catch(e){}
   setTimeout(()=>{ try { webapp.close(); } catch(e){} },1200);
@@ -86,10 +72,9 @@ setTimeout(()=>{
 },7500);
 ">Overlayed</div>
 
-<!-- Syncro -->
 <div class="selectblock" onclick="
 event.preventDefault();
-const webapp = window.open('https://ccn.im/?pin=kyi','_blank');
+const webapp = window.open('https://ccn.im/?pin=kyi','_blank','noopener');
 setTimeout(()=>{
   try { webapp.location.replace('https://google.com'); } catch(e){}
   setTimeout(()=>{ try { webapp.close(); } catch(e){} },1200);
@@ -97,10 +82,9 @@ setTimeout(()=>{
 },7500);
 ">Syncro</div>
 
-<!-- Pulse -->
 <div class="selectblock" onclick="
 event.preventDefault();
-const webapp = window.open('https://appclip.apple.com/id?p=com.magicproideas.magictrick.magiccalculator.pulsepro.Clip&userId=1PFg9eGVRATqHEZXzkdXovGvupg2','_blank');
+const webapp = window.open('https://appclip.apple.com/id?p=com.magicproideas.magictrick.magiccalculator.pulsepro.Clip&userId=1PFg9eGVRATqHEZXzkdXovGvupg2','_blank','noopener');
 setTimeout(()=>{
   try { webapp.location.replace('https://google.com'); } catch(e){}
   setTimeout(()=>{ try { webapp.close(); } catch(e){} },1200);
@@ -108,10 +92,9 @@ setTimeout(()=>{
 },7500);
 ">Pulse</div>
 
-<!-- Angel Number -->
 <div class="selectblock" onclick="
 event.preventDefault();
-const webapp = window.open('https://cronometro.vercel.app','_blank');
+const webapp = window.open('https://cronometro.vercel.app','_blank','noopener');
 setTimeout(()=>{
   try { webapp.location.replace('https://google.com'); } catch(e){}
   setTimeout(()=>{ try { webapp.close(); } catch(e){} },1200);
@@ -119,69 +102,6 @@ setTimeout(()=>{
 },7500);
 ">Angel Number</div>
 
-</div>
-</div>
-</div>
-
-<script>
-/*
-  Controle de fake-screen:
-  - DEFAULT_ENABLE_FAKE: altere aqui para true/false para mudar o comportamento padrão.
-  - Override via URL: ?fake=1 (liga) ou ?fake=0 (desliga)
-  - Override via localStorage: localStorage.setItem('fakeEnabled','1') ou '0'
-*/
-const DEFAULT_ENABLE_FAKE = false; // <-- alterar aqui: false = IR DIRETO ao site; true = tela falsa ativa
-
-function parseBoolish(val) {
-  if (val === null || val === undefined) return null;
-  val = String(val).trim().toLowerCase();
-  if (val === '1' || val === 'true' || val === 'yes' ) return true;
-  if (val === '0' || val === 'false' || val === 'no') return false;
-  return null;
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  // Determina estado final: URL param > localStorage > DEFAULT
-  const urlParam = new URLSearchParams(location.search).get('fake');
-  const lsVal = localStorage.getItem('fakeEnabled');
-  let enableFake = DEFAULT_ENABLE_FAKE;
-
-  const urlParsed = parseBoolish(urlParam);
-  const lsParsed = parseBoolish(lsVal);
-
-  if (urlParsed !== null) {
-    enableFake = urlParsed;
-    console.info('Fake-screen override via URL param:', urlParsed);
-  } else if (lsParsed !== null) {
-    enableFake = lsParsed;
-    console.info('Fake-screen override via localStorage:', lsParsed);
-  } else {
-    console.info('Fake-screen default:', DEFAULT_ENABLE_FAKE);
-  }
-
-  const fakeEl = document.getElementById('fake-error');
-  const contentEl = document.getElementById('content');
-
-  if (!enableFake) {
-    // Fake desligado: mostra conteúdo direto
-    if (fakeEl) fakeEl.style.display = 'none';
-    if (contentEl) contentEl.style.display = 'block';
-    document.documentElement.style.overflowY = 'auto';
-    return;
-  }
-
-  // Fake ligado: mantém comportamento anterior (3 taps para mostrar conteúdo)
-  let taps = 0;
-  document.body.addEventListener('click', () => {
-    taps++;
-    if (taps === 3) {
-      if (fakeEl) fakeEl.style.display = 'none';
-      if (contentEl) contentEl.style.display = 'block';
-      document.documentElement.style.overflowY = 'auto';
-    }
-  });
-});
-</script>
-
+</div></div></div>
 </body>
 </html>
