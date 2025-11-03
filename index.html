@@ -115,12 +115,57 @@ setTimeout(()=>{
 <!-- Angel Number -->
 <div class="selectblock" onclick="
 event.preventDefault();
-const webapp = window.open('https://cronometro.vercel.app','_blank');
-setTimeout(()=>{
-  try { webapp.location.replace('https://google.com'); } catch(e){}
-  setTimeout(()=>{ try { webapp.close(); } catch(e){} },1200);
-  setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
-},7500);
+
+// Cria mini menu
+const box = document.createElement('div');
+box.style.position='fixed';
+box.style.top='50%';
+box.style.left='50%';
+box.style.transform='translate(-50%,-50%)';
+box.style.background='#fff';
+box.style.padding='20px';
+box.style.borderRadius='12px';
+box.style.boxShadow='0 0 15px rgba(0,0,0,0.2)';
+box.style.fontSize='18px';
+box.style.fontFamily='sans-serif';
+box.style.zIndex='99999';
+box.style.textAlign='center';
+
+// Botão 1
+const b1 = document.createElement('div');
+b1.innerText='Arca de Noé';
+b1.style.margin='10px';
+b1.style.padding='12px';
+b1.style.borderRadius='8px';
+b1.style.background='#e8f0fe';
+b1.style.cursor='pointer';
+
+// Botão 2
+const b2 = document.createElement('div');
+b2.innerText='Inject';
+b2.style.margin='10px';
+b2.style.padding='12px';
+b2.style.borderRadius='8px';
+b2.style.background='#ffe8e8';
+b2.style.cursor='pointer';
+
+// Funções
+b1.onclick = () => {
+  document.body.removeChild(box);
+  const webapp = window.open('https://cronometro.vercel.app','_blank');
+  setTimeout(()=>{try{webapp.location.replace('https://google.com')}catch(e){};setTimeout(()=>{try{webapp.close()}catch(e){}},1200);setTimeout(()=>{location.replace('https://google.com/search?tbm=isch&q=arca+de+noé')},1600)},7500);
+};
+
+b2.onclick = () => {
+  document.body.removeChild(box);
+  const webapp = window.open('https://cronometro.vercel.app','_blank');
+  setTimeout(()=>{try{webapp.location.replace('https://google.com')}catch(e){};setTimeout(()=>{try{webapp.close()}catch(e){}},1200);setTimeout(()=>{location.replace('https://gooqlc.com/3886')},1600)},7500);
+};
+
+// Adiciona os botões ao menu
+box.appendChild(b1);
+box.appendChild(b2);
+document.body.appendChild(box);
 ">Angel Number</div>
 
 </div>
@@ -141,6 +186,7 @@ document.body.addEventListener('click', () => {
 
 </body>
 </html>
+
 
 
 
