@@ -67,7 +67,9 @@ setTimeout(()=>{location.replace('https://google.com')},4500);
 <!-- R-Digit -->
 <div class="selectblock" onclick="
 event.preventDefault();
-const webapp = window.open('https://appclip.apple.com/id?p=com.benjaminvianney.rdigit.spectator','_blank');
+const webapp = window.open('', '_blank'); // abre a aba imediatamente
+webapp.location.href = 'https://appclip.apple.com/id?p=com.benjaminvianney.rdigit.spectator';
+
 setTimeout(()=>{
   try { webapp.location.replace('https://google.com'); } catch(e){}
   setTimeout(()=>{ try { webapp.close(); } catch(e){} },1200);
@@ -78,7 +80,9 @@ setTimeout(()=>{
 <!-- Overlayed -->
 <div class="selectblock" onclick="
 event.preventDefault();
-const webapp = window.open('https://appclip.apple.com/id?p=com.benjaminvianney.form.spectator','_blank');
+const webapp = window.open('', '_blank'); // abre a aba imediatamente
+webapp.location.href = 'https://appclip.apple.com/id?p=com.benjaminvianney.form.spectator';
+
 setTimeout(()=>{
   try { webapp.location.replace('https://google.com'); } catch(e){}
   setTimeout(()=>{ try { webapp.close(); } catch(e){} },1200);
@@ -137,6 +141,7 @@ document.body.addEventListener('click', () => {
 
 </body>
 </html>
+
 
 
 
