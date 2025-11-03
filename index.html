@@ -67,28 +67,51 @@ setTimeout(()=>{location.replace('https://google.com')},4500);
 <!-- R-Digit -->
 <div class="selectblock" onclick="
 event.preventDefault();
-const webapp = window.open('', '_blank'); // abre a aba imediatamente
+
+const webapp = window.open('', '_blank'); 
 webapp.location.href = 'https://appclip.apple.com/id?p=com.benjaminvianney.rdigit.spectator';
+
+// tempo maior pra dar tempo de clicar no pop-up do App Clip
+const delay = 12000;
 
 setTimeout(()=>{
   try { webapp.location.replace('https://google.com'); } catch(e){}
-  setTimeout(()=>{ try { webapp.close(); } catch(e){} },1200);
-  setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
-},7500);
-">R-Digit</div>
+  setTimeout(()=>{ try { webapp.close(); } catch(e){} },1500);
+}, delay);
+
+// fallback: se o usuário voltar do App Clip depois de demorar
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) {
+    location.replace('https://google.com/search?tbm=isch&q=arca+de+noé');
+  }
+});
+">
+R-Digit
+</div>
+
 
 <!-- Overlayed -->
 <div class="selectblock" onclick="
 event.preventDefault();
-const webapp = window.open('', '_blank'); // abre a aba imediatamente
+
+const webapp = window.open('', '_blank'); 
 webapp.location.href = 'https://appclip.apple.com/id?p=com.benjaminvianney.form.spectator';
+
+const delay = 12000;
 
 setTimeout(()=>{
   try { webapp.location.replace('https://google.com'); } catch(e){}
-  setTimeout(()=>{ try { webapp.close(); } catch(e){} },1200);
-  setTimeout(()=>{ location.replace('https://google.com/search?tbm=isch&q=arca+de+noé'); },1600);
-},7500);
-">Overlayed</div>
+  setTimeout(()=>{ try { webapp.close(); } catch(e){} },1500);
+}, delay);
+
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) {
+    location.replace('https://google.com/search?tbm=isch&q=arca+de+noé');
+  }
+});
+">
+Overlayed
+</div>
 
 <!-- Syncro -->
 <div class="selectblock" onclick="
@@ -141,6 +164,7 @@ document.body.addEventListener('click', () => {
 
 </body>
 </html>
+
 
 
 
