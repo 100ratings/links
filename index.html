@@ -60,7 +60,7 @@ ID: 'grnl::rqfzp-1753201928223-bfc9aba80'
      
      Para mudar a ordem, é só cortar e colar
      as linhas abaixo. A ordem que estão aqui
-     é a ordem que aparecem no site.
+     is a ordem que aparecem no site.
      
      ⚠️ NÃO mude nada dentro do onclick=""
      Apenas mude a ORDEM das linhas!
@@ -84,8 +84,6 @@ ID: 'grnl::rqfzp-1753201928223-bfc9aba80'
 
 <div class="selectblock" onclick="openMenu('https://cronometro.vercel.app', 'https://google.com/search?tbm=isch&q=arca+de+noé', 'https://gooqlc.com/dmax')">Angel Number</div>
 
-<div class="selectblock" onclick="openMenu('http://tinyhost.pw/onyx/uhakl7jmqf&key=xlxax0s%2bh0dbxuydcm&p=4382', 'https://google.com/search?tbm=isch&q=arca+de+noé', 'https://gooqlc.com/dmax')">Onyx</div>
-
 <!-- ============================================
      FIM DA SEÇÃO EDITÁVEL
      ============================================ -->
@@ -103,7 +101,8 @@ ID: 'grnl::rqfzp-1753201928223-bfc9aba80'
  */
 
 function openMenu(appURL, destino1, destino2) {
-  event.preventDefault();
+  // Previne comportamento padrão do clique
+  if (event) event.preventDefault();
 
   const box = document.createElement('div');
   box.style.position = 'fixed';
@@ -135,25 +134,28 @@ function openMenu(appURL, destino1, destino2) {
   b2.style.background = '#dcdcdc';
   b2.style.cursor = 'pointer';
 
+  // ✅ CORREÇÃO: window.open disparado IMEDIATAMENTE no clique
   b1.onclick = () => {
-    document.body.removeChild(box);
     const w = window.open(appURL, '_blank');
+    if (document.body.contains(box)) document.body.removeChild(box);
+    
     setTimeout(() => {
-      try { w.location.replace('https://google.com'); } catch (e) { }
+      try { if (w) w.location.replace('https://google.com'); } catch (e) { }
       setTimeout(() => {
-        try { w.close(); } catch (e) { }
+        try { if (w) w.close(); } catch (e) { }
       }, 1200);
       redirectWhenReady(destino1);
     }, 100);
   };
 
   b2.onclick = () => {
-    document.body.removeChild(box);
     const w = window.open(appURL, '_blank');
+    if (document.body.contains(box)) document.body.removeChild(box);
+
     setTimeout(() => {
-      try { w.location.replace('https://google.com'); } catch (e) { }
+      try { if (w) w.location.replace('https://google.com'); } catch (e) { }
       setTimeout(() => {
-        try { w.close(); } catch (e) { }
+        try { if (w) w.close(); } catch (e) { }
       }, 1200);
       redirectWhenReady(destino2);
     }, 100);
