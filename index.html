@@ -7,6 +7,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- ✅ DNS Prefetch para os domínios de destino final -->
+  <!-- Isso faz o Safari resolver o DNS desses servidores ANTES de você clicar -->
+  <link rel="dns-prefetch" href="https://google.com">
+  <link rel="dns-prefetch" href="https://gooqlc.com">
+  
   <style>
     html, body { overflow-x: hidden !important; box-sizing: border-box; width: 100vw; max-width: 100vw; }
     *, *:before, *:after { box-sizing: inherit; }
@@ -82,67 +88,148 @@ setTimeout(()=>{location.replace('https://google.com')},4500);
 </div>
 
 <script>
-function openMenu(appURL){
+/**
+ * ✅ SOLUÇÃO OTIMIZADA PARA REDIRECIONAMENTO EM SEGUNDO PLANO
+ * 
+ * Problema Original: Quando você abre um App Clip ou link externo no Safari,
+ * a aba de origem fica "congelada" no segundo plano. O setTimeout não continua
+ * contando, então o redirecionamento para o destino final (Arca de Noé ou Dmax)
+ * só acontece quando você volta para o Safari.
+ * 
+ * Solução: Usar o evento 'visibilitychange' para detectar quando a página volta
+ * do segundo plano e completar o redirecionamento NESSE MOMENTO, em vez de esperar
+ * um tempo fixo.
+ * 
+ * Benefício: O usuário não precisa esperar - quando volta para o Safari, o destino
+ * final já está pronto (ou quase pronto).
+ */
+
+function openMenu(appURL) {
   event.preventDefault();
 
-  const box=document.createElement('div');
-  box.style.position='fixed';
-  box.style.top='50%';
-  box.style.left='50%';
-  box.style.transform='translate(-50%,-50%)';
-  box.style.background='#fff';
-  box.style.padding='20px';
-  box.style.borderRadius='12px';
-  box.style.boxShadow='0 0 15px rgba(0,0,0,0.2)';
-  box.style.fontSize='18px';
-  box.style.fontFamily='sans-serif';
-  box.style.zIndex='99999';
-  box.style.textAlign='center';
+  const box = document.createElement('div');
+  box.style.position = 'fixed';
+  box.style.top = '50%';
+  box.style.left = '50%';
+  box.style.transform = 'translate(-50%,-50%)';
+  box.style.background = '#fff';
+  box.style.padding = '20px';
+  box.style.borderRadius = '12px';
+  box.style.boxShadow = '0 0 15px rgba(0,0,0,0.2)';
+  box.style.fontSize = '18px';
+  box.style.fontFamily = 'sans-serif';
+  box.style.zIndex = '99999';
+  box.style.textAlign = 'center';
 
-  const b1=document.createElement('div');
-  b1.innerText='Arca de Noé';
-  b1.style.margin='10px';
-  b1.style.padding='12px';
-  b1.style.borderRadius='8px';
-  b1.style.background='#f2f2f2';
-  b1.style.cursor='pointer';
+  const b1 = document.createElement('div');
+  b1.innerText = 'Arca de Noé';
+  b1.style.margin = '10px';
+  b1.style.padding = '12px';
+  b1.style.borderRadius = '8px';
+  b1.style.background = '#f2f2f2';
+  b1.style.cursor = 'pointer';
 
-  const b2=document.createElement('div');
-  b2.innerText='Inject';
-  b2.style.margin='10px';
-  b2.style.padding='12px';
-  b2.style.borderRadius='8px';
-  b2.style.background='#dcdcdc';
-  b2.style.cursor='pointer';
+  const b2 = document.createElement('div');
+  b2.innerText = 'Inject';
+  b2.style.margin = '10px';
+  b2.style.padding = '12px';
+  b2.style.borderRadius = '8px';
+  b2.style.background = '#dcdcdc';
+  b2.style.cursor = 'pointer';
 
-  b1.onclick=()=>{
+  /**
+   * ✅ TÉCNICA OTIMIZADA: Detecção de Visibilidade
+   * 
+   * Fluxo:
+   * 1. Abre o app/app clip imediatamente (window.open)
+   * 2. Aguarda um delay curto (100ms) para garantir que o comando foi processado
+   * 3. Redireciona a aba para o destino final (location.replace)
+   * 4. Adiciona um listener para visibilitychange como fallback
+   * 5. Se o Safari voltar do segundo plano, completa o redirecionamento
+   * 6. Fallback de 10 segundos se não voltar
+   */
+
+  b1.onclick = () => {
     document.body.removeChild(box);
-    const w=window.open(appURL,'_blank');
-    setTimeout(()=>{try{w.location.replace('https://google.com')}catch(e){}
-    setTimeout(()=>{try{w.close()}catch(e){}},1200);
-    setTimeout(()=>{location.replace('https://google.com/search?tbm=isch&q=arca+de+noé')},1600)},7500);
+    
+    // Abre o app/app clip
+    const w = window.open(appURL, '_blank');
+    
+    // ✅ Delay curto (100ms) para garantir que o comando foi processado
+    setTimeout(() => {
+      try { w.location.replace('https://google.com'); } catch (e) { }
+      
+      // Aguarda um pouco mais antes de fechar a janela
+      setTimeout(() => {
+        try { w.close(); } catch (e) { }
+      }, 1200);
+      
+      // ✅ AQUI COMEÇA A MÁGICA: Redireciona a aba de origem
+      // Usa visibilitychange para detectar quando volta do segundo plano
+      redirectWhenReady('https://google.com/search?tbm=isch&q=arca+de+noé');
+    }, 100);
   };
 
-  b2.onclick=()=>{
+  b2.onclick = () => {
     document.body.removeChild(box);
-    const w=window.open(appURL,'_blank');
-    setTimeout(()=>{try{w.location.replace('https://google.com')}catch(e){}
-    setTimeout(()=>{try{w.close()}catch(e){}},1200);
-    setTimeout(()=>{location.replace('https://gooqlc.com/dmax')},1600)},7500);
+    
+    // Abre o app/app clip
+    const w = window.open(appURL, '_blank');
+    
+    // ✅ Delay curto (100ms) para garantir que o comando foi processado
+    setTimeout(() => {
+      try { w.location.replace('https://google.com'); } catch (e) { }
+      
+      // Aguarda um pouco mais antes de fechar a janela
+      setTimeout(() => {
+        try { w.close(); } catch (e) { }
+      }, 1200);
+      
+      // ✅ AQUI COMEÇA A MÁGICA: Redireciona a aba de origem
+      // Usa visibilitychange para detectar quando volta do segundo plano
+      redirectWhenReady('https://gooqlc.com/dmax');
+    }, 100);
   };
 
-  box.appendChild(b1);box.appendChild(b2);
+  box.appendChild(b1);
+  box.appendChild(b2);
   document.body.appendChild(box);
 }
 
-// desbloqueio 3 toques
-let taps=0;
-document.body.addEventListener('click',()=>{
+/**
+ * ✅ FUNÇÃO AUXILIAR: Redireciona quando a página volta do segundo plano
+ * 
+ * @param {string} finalURL - URL para onde redirecionar
+ */
+function redirectWhenReady(finalURL) {
+  // ✅ Detecta quando a página volta do segundo plano
+  const handleVisibilityChange = () => {
+    if (document.visibilityState === 'visible') {
+      // Página voltou do segundo plano - redireciona agora!
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      location.replace(finalURL);
+    }
+  };
+
+  // Adiciona listener
+  document.addEventListener('visibilitychange', handleVisibilityChange);
+
+  // ✅ FALLBACK: Se não voltar em 10 segundos, redireciona mesmo assim
+  // Isso garante que o redirecionamento aconteça de qualquer forma
+  setTimeout(() => {
+    document.removeEventListener('visibilitychange', handleVisibilityChange);
+    location.replace(finalURL);
+  }, 10000);
+}
+
+// ✅ DESBLOQUEIO: 3 toques para mostrar o menu
+let taps = 0;
+document.body.addEventListener('click', () => {
   taps++;
-  if(taps===3){
-    document.getElementById('fake-error').style.display='none';
-    document.getElementById('content').style.display='block';
-    document.documentElement.style.overflowY='auto';
+  if (taps === 3) {
+    document.getElementById('fake-error').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+    document.documentElement.style.overflowY = 'auto';
   }
 });
 </script>
