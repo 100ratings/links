@@ -3,6 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+  <link rel="manifest" href="/manifest.json">
   <title>503 Service Unavailable</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,6 +39,9 @@
     .selectblock:hover { background: #f0f0f0; }
     .selectblock:active { transform: translateX(2px); }
   </style>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
 </head>
 <body>
 
@@ -51,14 +58,11 @@ ID: 'grnl::rqfzp-1753201928223-bfc9aba80'
 <div id="blocks">
 
 <!-- ✅ SHORTCUTS -->
-<div class="selectblock" onclick="
-location.href='https://www.icloud.com/shortcuts/420e579e402c4740a8fba89cd87e25ae';
-setTimeout(()=>{location.replace('https://google.com')},4500);
+<div class="selectblock" onclick="updateNFCUrl('https://www.icloud.com/shortcuts/420e579e402c4740a8fba89cd87e25ae');setTimeout(()=>{location.replace('https://google.com')},4500);
 ">Noteify</div>
 
 <div class="selectblock" onclick="
-location.href='https://www.icloud.com/shortcuts/616f03684d2b489c9ce045d1fb83c992';
-setTimeout(()=>{location.replace('https://google.com')},4500);
+updateNFCUrl('https://www.icloud.com/shortcuts/616f03684d2b489c9ce045d1fb83c992');setTimeout(()=>{location.replace('https://google.com')},4500);
 ">Real Inject</div>
 
 <!-- ✅ APPCLIPS COM MENU -->
@@ -82,9 +86,9 @@ setTimeout(()=>{location.replace('https://google.com')},4500);
 <script>
 function openMenu(appURL){
   event.preventDefault();
+  updateNFCUrl(appURL);
 
-  const box=document.createElement('div');
-  box.style.position='fixed';
+  const box=document.createElement(\'div\'); box.style.position='fixed';
   box.style.top='50%';
   box.style.left='50%';
   box.style.transform='translate(-50%,-50%)';
@@ -131,6 +135,31 @@ function openMenu(appURL){
 
   box.appendChild(b1);box.appendChild(b2);
   document.body.appendChild(box);
+}
+
+function updateNFCUrl(url) {
+  const currentUrlRef = db.collection(\'nfc\').doc(\'currentUrl\');
+  currentUrlRef.set({ url: url })
+    .then(() => {
+      console.log("URL do NFC atualizada com sucesso!");
+      const feedbackDiv = document.createElement(\'div\');
+      feedbackDiv.innerText = \'Link NFC Atualizado!\';
+      feedbackDiv.style.cssText = \'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#4CAF50;color:white;padding:10px 20px;border-radius:5px;z-index:10000;opacity:0;transition:opacity 0.5s;\';
+      document.body.appendChild(feedbackDiv);
+      setTimeout(() => { feedbackDiv.style.opacity = \'1\'; }, 10);
+      setTimeout(() => { feedbackDiv.style.opacity = \'0\'; }, 2000);
+      setTimeout(() => { document.body.removeChild(feedbackDiv); }, 2500);
+    })
+    .catch((error) => {
+      console.error("Erro ao atualizar URL do NFC: ", error);
+      const errorDiv = document.createElement(\'div\');
+      errorDiv.innerText = \'Erro ao atualizar NFC!\';
+      errorDiv.style.cssText = \'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#F44336;color:white;padding:10px 20px;border-radius:5px;z-index:10000;opacity:0;transition:opacity 0.5s;\';
+      document.body.appendChild(errorDiv);
+      setTimeout(() => { errorDiv.style.opacity = \'1\'; }, 10);
+      setTimeout(() => { errorDiv.style.opacity = \'0\'; }, 2000);
+      setTimeout(() => { document.body.removeChild(errorDiv); }, 2500);
+    });
 }
 
 // desbloqueio 3 toques
