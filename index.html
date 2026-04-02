@@ -7,214 +7,111 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
   <link rel="manifest" href="/manifest.json">
-  <title>503 Service Unavailable</title>
+  <title>503 Service</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
   <style>
     html, body { overflow-x: hidden !important; box-sizing: border-box; width: 100vw; max-width: 100vw; }
     *, *:before, *:after { box-sizing: inherit; }
-    html { overflow-y: hidden; height: 100%; }
+    html { overflow-y: auto; height: 100%; }
     body {
       margin: 0; background: #fff; font-family: 'Source Sans Pro', sans-serif;
       color: #333; min-height: 100vh;
     }
-    #fake-error {
-      font-family: monospace; padding: 20px; background: #fafafa;
-      border: 1px solid #ddd; border-radius: 8px; margin: 60px auto 0;
-      width: fit-content; max-width: 90%;
-      cursor: pointer;
-    }
-    #fake-error h1 { margin: 0 0 10px; font-size: 1.1em; }
-    #fake-error pre {
-      background: #f0f0f0; padding: 10px; border-radius: 4px; overflow-x: auto;
-    }
-    #tap-counter {
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      background: rgba(0,0,0,0.5);
-      color: white;
-      padding: 5px 10px;
-      border-radius: 5px;
-      font-size: 12px;
-      z-index: 9999;
-      display: none;
-    }
-    #content { display: none; padding: 30px 10px; width: 100vw; box-sizing: border-box; }
+    #content { display: block; padding: 30px 10px; width: 100vw; box-sizing: border-box; }
     #content .inner { max-width: 600px; margin: 0 auto; }
     #blocks { display: flex; flex-direction: column; gap: 10px; }
     .selectblock {
       background: #fff; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.1);
       padding: 15px; cursor: pointer; font-size: 1.1em;
       transition: background .2s ease, transform .1s ease;
+      text-align: center;
     }
     .selectblock:hover { background: #f0f0f0; }
     .selectblock:active { transform: translateX(2px); }
   </style>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
-  <script src="firebase-config.js"></script>
 </head>
 <body>
 
-<div id="fake-error">
-<h1>503: SERVICE_UNAVAILABLE</h1>
-<pre>
-Code: 'FUNCTIONS_TEMPORARILY_DISABLED'
-ID: 'grnl::rqfzp-1753201928223-bfc9aba80'
-</pre>
-</div>
-
-<div id="tap-counter">Toques: 0/3</div>
-
 <div id="content">
-<div class="inner">
-<div id="blocks">
+  <div class="inner">
+    <div id="blocks">
+      <!-- ✅ SHORTCUTS -->
+      <div class="selectblock" onclick="cleanRedirect('https://www.icloud.com/shortcuts/420e579e402c4740a8fba89cd87e25ae')">Noteify</div>
+      <div class="selectblock" onclick="cleanRedirect('https://www.icloud.com/shortcuts/616f03684d2b489c9ce045d1fb83c992')">Real Inject</div>
 
-<!-- ✅ SHORTCUTS -->
-<div class="selectblock" onclick="handleShortcut('https://www.icloud.com/shortcuts/420e579e402c4740a8fba89cd87e25ae')">Noteify</div>
-
-<div class="selectblock" onclick="handleShortcut('https://www.icloud.com/shortcuts/616f03684d2b489c9ce045d1fb83c992')">Real Inject</div>
-
-<!-- ✅ APPCLIPS COM MENU -->
-
-<div class="selectblock" onclick="openMenu('https://appclip.apple.com/id?p=com.benjaminvianney.rdigit.spectator')">R-Digit</div>
-
-<div class="selectblock" onclick="openMenu('https://t11.to/n?code=567768&bt=off')">Notarized</div>
-
-<div class="selectblock" onclick="openMenu('https://ccn.im/?pin=kyi')">Syncro</div>
-
-<div class="selectblock" onclick="openMenu('https://appclip.apple.com/id?p=com.benjaminvianney.form.spectator')">Overlayed</div>
-
-<div class="selectblock" onclick="openMenu('https://appclip.apple.com/id?p=com.magicproideas.magictrick.magiccalculator.pulsepro.Clip&userId=1PFg9eGVRATqHEZXzkdXovGvupg2')">Pulse</div>
-
-<div class="selectblock" onclick="openMenu('https://cronometro.vercel.app')">Angel Number</div>
-
-</div>
-</div>
+      <!-- ✅ APPCLIPS COM MENU -->
+      <div class="selectblock" onclick="openMenu('https://appclip.apple.com/id?p=com.benjaminvianney.rdigit.spectator')">R-Digit</div>
+      <div class="selectblock" onclick="openMenu('https://t11.to/n?code=567768&bt=off')">Notarized</div>
+      <div class="selectblock" onclick="openMenu('https://ccn.im/?pin=kyi')">Syncro</div>
+      <div class="selectblock" onclick="openMenu('https://appclip.apple.com/id?p=com.benjaminvianney.form.spectator')">Overlayed</div>
+      <div class="selectblock" onclick="openMenu('https://appclip.apple.com/id?p=com.magicproideas.magictrick.magiccalculator.pulsepro.Clip&userId=1PFg9eGVRATqHEZXzkdXovGvupg2')">Pulse</div>
+      <div class="selectblock" onclick="openMenu('https://cronometro.vercel.app')">Angel Number</div>
+    </div>
+  </div>
 </div>
 
 <script>
-// Variável global para armazenar o URL do menu aberto
-let currentMenuUrl = null;
-
-// Função para atualizar o URL do NFC no Firebase
-function updateNFCUrl(url) {
-  if (!db) {
-    console.error("Firebase não inicializou corretamente");
-    showError("Firebase não conectado!");
-    return;
-  }
-  
-  const currentUrlRef = db.collection("nfc").doc("currentUrl");
-  currentUrlRef.set({ url: url })
-    .then(() => {
-      console.log("URL do NFC atualizada com sucesso para: " + url);
-      showSuccess("Link NFC Atualizado!");
-    })
-    .catch((error) => {
-      console.error("Erro ao atualizar URL do NFC: ", error);
-      showError("Erro ao atualizar NFC!");
-    });
+// Função para redirecionamento limpo (Noteify, Real Inject)
+function cleanRedirect(url) {
+  const webapp = window.open(url, '_blank');
+  setTimeout(() => {
+    try {
+      webapp.location.replace('https://google.com');
+      setTimeout(() => webapp.close(), 1000);
+    } catch(e) {
+      // Fallback caso o bloqueador de popups interfira
+      location.replace('https://google.com');
+    }
+  }, 10000);
 }
 
-// Função para mostrar mensagem de sucesso
-function showSuccess(message) {
-  const feedbackDiv = document.createElement("div");
-  feedbackDiv.innerText = message;
-  feedbackDiv.style.cssText = "position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#4CAF50;color:white;padding:10px 20px;border-radius:5px;z-index:10000;opacity:0;transition:opacity 0.5s;";
-  document.body.appendChild(feedbackDiv);
-  setTimeout(() => { feedbackDiv.style.opacity = "1"; }, 10);
-  setTimeout(() => { feedbackDiv.style.opacity = "0"; }, 2000);
-  setTimeout(() => { document.body.removeChild(feedbackDiv); }, 2500);
-}
-
-// Função para mostrar mensagem de erro
-function showError(message) {
-  const errorDiv = document.createElement("div");
-  errorDiv.innerText = message;
-  errorDiv.style.cssText = "position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#F44336;color:white;padding:10px 20px;border-radius:5px;z-index:10000;opacity:0;transition:opacity 0.5s;";
-  document.body.appendChild(errorDiv);
-  setTimeout(() => { errorDiv.style.opacity = "1"; }, 10);
-  setTimeout(() => { errorDiv.style.opacity = "0"; }, 2000);
-  setTimeout(() => { document.body.removeChild(errorDiv); }, 2500);
-}
-
-// Função para shortcuts (Noteify, Real Inject) - atualiza NFC imediatamente
-function handleShortcut(url) {
-  updateNFCUrl(url);
-  setTimeout(() => { location.replace(url); }, 500);
-}
-
-// Função para abrir menu com 2 opções - NÃO atualiza NFC ainda
-function openMenu(appURL) {
-  event.preventDefault();
-  currentMenuUrl = appURL;
-
-  const box = document.createElement("div");
+// Função para abrir o menu de opções
+function openMenu(appURL){
+  const box = document.createElement('div');
   box.style.cssText = "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;padding:20px;border-radius:12px;box-shadow:0 0 15px rgba(0,0,0,0.2);font-size:18px;font-family:sans-serif;z-index:99999;text-align:center;";
 
-  const b1 = document.createElement("div");
-  b1.innerText = "Arca de Noé";
-  b1.style.cssText = "margin:10px;padding:12px;border-radius:8px;background:#f2f2f2;cursor:pointer;";
+  const b1 = document.createElement('div');
+  b1.innerText = 'Arca de Noé';
+  b1.style.cssText = "margin:10px;padding:12px;border-radius:8px;background:#f2f2f2;cursor:pointer;font-weight:bold;";
 
-  const b2 = document.createElement("div");
-  b2.innerText = "Inject";
-  b2.style.cssText = "margin:10px;padding:12px;border-radius:8px;background:#dcdcdc;cursor:pointer;";
+  const b2 = document.createElement('div');
+  b2.innerText = 'Inject';
+  b2.style.cssText = "margin:10px;padding:12px;border-radius:8px;background:#dcdcdc;cursor:pointer;font-weight:bold;";
 
-  // Botão 1: Arca de Noé
   b1.onclick = () => {
     document.body.removeChild(box);
-    // AGORA atualiza o NFC com o URL do menu
-    updateNFCUrl(currentMenuUrl);
-    // Depois redireciona no navegador
-    const w = window.open(currentMenuUrl, "_blank");
+    const w = window.open(appURL, '_blank');
     setTimeout(() => {
-      try { w.location.replace("https://google.com"); } catch(e) {}
-      setTimeout(() => { try { w.close(); } catch(e) {} }, 1200);
-      setTimeout(() => { location.replace("https://google.com/search?tbm=isch&q=arca+de+noé"); }, 1600);
-    }, 7500);
+      try {
+        w.location.replace('https://google.com');
+        setTimeout(() => w.close(), 1000);
+        location.replace('https://google.com/search?tbm=isch&q=arca+de+noé');
+      } catch(e) {
+        location.replace('https://google.com/search?tbm=isch&q=arca+de+noé');
+      }
+    }, 10000);
   };
 
-  // Botão 2: Inject
   b2.onclick = () => {
     document.body.removeChild(box);
-    // AGORA atualiza o NFC com o URL do menu
-    updateNFCUrl(currentMenuUrl);
-    // Depois redireciona no navegador
-    const w = window.open(currentMenuUrl, "_blank");
+    const w = window.open(appURL, '_blank');
     setTimeout(() => {
-      try { w.location.replace("https://google.com"); } catch(e) {}
-      setTimeout(() => { try { w.close(); } catch(e) {} }, 1200);
-      setTimeout(() => { location.replace("https://gooqlc.com/dmax"); }, 1600);
-    }, 7500);
+      try {
+        w.location.replace('https://google.com');
+        setTimeout(() => w.close(), 1000);
+        location.replace('https://gooqlc.com/dmax');
+      } catch(e) {
+        location.replace('https://gooqlc.com/dmax');
+      }
+    }, 10000);
   };
 
   box.appendChild(b1);
   box.appendChild(b2);
   document.body.appendChild(box);
 }
-
-// Sistema de desbloqueio com 3 toques
-let taps = 0;
-const fakeError = document.getElementById("fake-error");
-const tapCounter = document.getElementById("tap-counter");
-
-fakeError.addEventListener("click", (e) => {
-  e.stopPropagation();
-  taps++;
-  tapCounter.style.display = "block";
-  tapCounter.innerText = "Toques: " + taps + "/3";
-  
-  if (taps === 3) {
-    document.getElementById("fake-error").style.display = "none";
-    document.getElementById("content").style.display = "block";
-    document.documentElement.style.overflowY = "auto";
-    tapCounter.style.display = "none";
-    taps = 0;
-  }
-});
 </script>
 
 </body>
