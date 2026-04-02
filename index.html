@@ -99,13 +99,25 @@ function openMenu(appURL){
   b1.onclick=()=>{
     document.body.removeChild(box);
     const w=window.open(appURL,'_blank');
-    setTimeout(()=>{location.replace('https://google.com/search?tbm=isch&q=arca+de+noé')},2000);
+    const handleVisibilityChange=()=>{
+      if(document.hidden){
+        document.removeEventListener('visibilitychange',handleVisibilityChange);
+        location.replace('https://google.com/search?tbm=isch&q=arca+de+noé');
+      }
+    };
+    document.addEventListener('visibilitychange',handleVisibilityChange);
   };
 
   b2.onclick=()=>{
     document.body.removeChild(box);
     const w=window.open(appURL,'_blank');
-    setTimeout(()=>{location.replace('https://gooqlc.com/dmax')},2000);
+    const handleVisibilityChange=()=>{
+      if(document.hidden){
+        document.removeEventListener('visibilitychange',handleVisibilityChange);
+        location.replace('https://gooqlc.com/dmax');
+      }
+    };
+    document.addEventListener('visibilitychange',handleVisibilityChange);
   };
 
   box.appendChild(b1);box.appendChild(b2);
