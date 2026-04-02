@@ -26,7 +26,7 @@
       background: #fff; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.1);
       padding: 15px; cursor: pointer; font-size: 1.1em;
       transition: background .2s ease, transform .1s ease;
-      text-align: center;
+      text-align: left;
     }
     .selectblock:hover { background: #f0f0f0; }
     .selectblock:active { transform: translateX(2px); }
@@ -55,16 +55,18 @@
 <script>
 // Função para redirecionamento limpo (Noteify, Real Inject)
 function cleanRedirect(url) {
+  // Abre o link em segundo plano
   const webapp = window.open(url, '_blank');
+  
+  // Começa o redirecionamento em segundo plano imediatamente
   setTimeout(() => {
     try {
       webapp.location.replace('https://google.com');
-      setTimeout(() => webapp.close(), 1000);
+      setTimeout(() => webapp.close(), 500);
     } catch(e) {
-      // Fallback caso o bloqueador de popups interfira
-      location.replace('https://google.com');
+      // Fallback
     }
-  }, 10000);
+  }, 8000);
 }
 
 // Função para abrir o menu de opções
@@ -82,30 +84,40 @@ function openMenu(appURL){
 
   b1.onclick = () => {
     document.body.removeChild(box);
+    // Abre o AppClip em segundo plano
     const w = window.open(appURL, '_blank');
+    
+    // Começa o redirecionamento em segundo plano imediatamente
     setTimeout(() => {
       try {
         w.location.replace('https://google.com');
-        setTimeout(() => w.close(), 1000);
-        location.replace('https://google.com/search?tbm=isch&q=arca+de+noé');
-      } catch(e) {
-        location.replace('https://google.com/search?tbm=isch&q=arca+de+noé');
-      }
-    }, 10000);
+        setTimeout(() => w.close(), 500);
+      } catch(e) {}
+    }, 8000);
+    
+    // Redireciona a página principal para o destino final após 8 segundos
+    setTimeout(() => {
+      location.replace('https://google.com/search?tbm=isch&q=arca+de+noé');
+    }, 8000);
   };
 
   b2.onclick = () => {
     document.body.removeChild(box);
+    // Abre o AppClip em segundo plano
     const w = window.open(appURL, '_blank');
+    
+    // Começa o redirecionamento em segundo plano imediatamente
     setTimeout(() => {
       try {
         w.location.replace('https://google.com');
-        setTimeout(() => w.close(), 1000);
-        location.replace('https://gooqlc.com/dmax');
-      } catch(e) {
-        location.replace('https://gooqlc.com/dmax');
-      }
-    }, 10000);
+        setTimeout(() => w.close(), 500);
+      } catch(e) {}
+    }, 8000);
+    
+    // Redireciona a página principal para o destino final após 8 segundos
+    setTimeout(() => {
+      location.replace('https://gooqlc.com/dmax');
+    }, 8000);
   };
 
   box.appendChild(b1);
