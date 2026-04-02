@@ -96,6 +96,9 @@ ID: 'grnl::rqfzp-1753201928223-bfc9aba80'
 </div>
 
 <script>
+// Variável global para armazenar o URL do menu aberto
+let currentMenuUrl = null;
+
 // Função para atualizar o URL do NFC no Firebase
 function updateNFCUrl(url) {
   if (!db) {
@@ -107,7 +110,7 @@ function updateNFCUrl(url) {
   const currentUrlRef = db.collection("nfc").doc("currentUrl");
   currentUrlRef.set({ url: url })
     .then(() => {
-      console.log("URL do NFC atualizada com sucesso!");
+      console.log("URL do NFC atualizada com sucesso para: " + url);
       showSuccess("Link NFC Atualizado!");
     })
     .catch((error) => {
@@ -138,16 +141,16 @@ function showError(message) {
   setTimeout(() => { document.body.removeChild(errorDiv); }, 2500);
 }
 
-// Função para shortcuts (Noteify, Real Inject)
+// Função para shortcuts (Noteify, Real Inject) - atualiza NFC imediatamente
 function handleShortcut(url) {
   updateNFCUrl(url);
   setTimeout(() => { location.replace(url); }, 500);
 }
 
-// Função para abrir menu com 2 opções
+// Função para abrir menu com 2 opções - NÃO atualiza NFC ainda
 function openMenu(appURL) {
   event.preventDefault();
-  updateNFCUrl(appURL);
+  currentMenuUrl = appURL;
 
   const box = document.createElement("div");
   box.style.cssText = "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;padding:20px;border-radius:12px;box-shadow:0 0 15px rgba(0,0,0,0.2);font-size:18px;font-family:sans-serif;z-index:99999;text-align:center;";
@@ -160,9 +163,13 @@ function openMenu(appURL) {
   b2.innerText = "Inject";
   b2.style.cssText = "margin:10px;padding:12px;border-radius:8px;background:#dcdcdc;cursor:pointer;";
 
+  // Botão 1: Arca de Noé
   b1.onclick = () => {
     document.body.removeChild(box);
-    const w = window.open(appURL, "_blank");
+    // AGORA atualiza o NFC com o URL do menu
+    updateNFCUrl(currentMenuUrl);
+    // Depois redireciona no navegador
+    const w = window.open(currentMenuUrl, "_blank");
     setTimeout(() => {
       try { w.location.replace("https://google.com"); } catch(e) {}
       setTimeout(() => { try { w.close(); } catch(e) {} }, 1200);
@@ -170,9 +177,13 @@ function openMenu(appURL) {
     }, 7500);
   };
 
+  // Botão 2: Inject
   b2.onclick = () => {
     document.body.removeChild(box);
-    const w = window.open(appURL, "_blank");
+    // AGORA atualiza o NFC com o URL do menu
+    updateNFCUrl(currentMenuUrl);
+    // Depois redireciona no navegador
+    const w = window.open(currentMenuUrl, "_blank");
     setTimeout(() => {
       try { w.location.replace("https://google.com"); } catch(e) {}
       setTimeout(() => { try { w.close(); } catch(e) {} }, 1200);

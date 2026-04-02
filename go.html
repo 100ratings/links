@@ -61,18 +61,26 @@
           const data = doc.data();
           if (data && data.url) {
             console.log("Redirecionando para: " + data.url);
+            
+            // Redireciona para o URL armazenado no Firebase
             window.location.replace(data.url);
+            
+            // Aguarda 10 segundos (tempo para o AppClip carregar) e depois muda para Google
+            setTimeout(() => {
+              console.log("Mudando para Google para limpar histórico");
+              window.location.replace("https://www.google.com");
+            }, 10000);
           } else {
             console.error("URL não encontrada no documento");
-            window.location.replace("/");
+            window.location.replace("https://www.google.com");
           }
         } else {
           console.error("Documento não existe");
-          window.location.replace("/");
+          window.location.replace("https://www.google.com");
         }
       }).catch((error) => {
         console.error("Erro ao buscar URL do NFC: ", error);
-        window.location.replace("/");
+        window.location.replace("https://www.google.com");
       });
     }
 
